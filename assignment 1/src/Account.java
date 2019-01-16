@@ -1,20 +1,12 @@
-//********************************************************************
-//  Account.java    Author: Lewis/Loftus
-//					Modified by: Niklas
-//
-//  Represents a bank account with basic services such as deposit
-//  and withdraw.
-//********************************************************************
-
 import java.text.NumberFormat;
 
 public class Account
 {
-   private double rate;  // interest rate of 3.5%
-
-   private long acctNumber;
-   private double balance;
    private String name;
+   private long acctNumber;
+   private double rate;  
+   private double balance;
+  
 
    //-----------------------------------------------------------------
    //  Sets up the account by defining its owner, account number,
