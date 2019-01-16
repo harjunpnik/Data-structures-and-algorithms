@@ -1,5 +1,6 @@
 //********************************************************************
-//  Account.java       Author: Lewis/Loftus
+//  Account.java    Author: Lewis/Loftus
+//					Modified by: Niklas
 //
 //  Represents a bank account with basic services such as deposit
 //  and withdraw.
@@ -66,6 +67,22 @@ public class Account
    {
       return balance;
    }
+   
+   //-----------------------------------------------------------------
+   //  Returns the account number
+   //-----------------------------------------------------------------
+   public long getAcctNumber ()
+   {
+      return acctNumber;
+   }
+   
+   //-----------------------------------------------------------------
+   //  Returns the account name
+   //-----------------------------------------------------------------
+   public String getName ()
+   {
+      return name;
+   }
 
    //-----------------------------------------------------------------
    //  Returns a one-line description of the account as a string.
@@ -74,6 +91,6 @@ public class Account
    {
       NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
-      return (acctNumber + "\t" + name + "\t" + fmt.format(balance));
+      return (acctNumber + "\t" + name + "\t" + fmt.format(balance) + "\t" + rate);
    }
 }
