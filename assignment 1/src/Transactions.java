@@ -37,6 +37,7 @@ public class Transactions
 //      System.out.println (acct2);
 //      System.out.println (acct3);
 	   
+	   
 	   Scanner scanner = new Scanner(System.in);
 	   
 	   //Initialization of the array list and some accounts to the bank 
@@ -68,7 +69,7 @@ public class Transactions
 		   			long accountNr = scanner.nextLong();
 		   			System.out.print("Balance: ");
 		   			double balance = scanner.nextDouble();
-		   			System.out.print("Rate: ");
+		   			System.out.print("Interest rate: ");
 		   			double rate = scanner.nextDouble();
 		   	
 		   			accountList.add(new Account (name, accountNr, balance, rate));
@@ -78,23 +79,146 @@ public class Transactions
 		   			
 		   		//Withdraw money from account
 		   		case "2" :
-		   			System.out.println("\n" + "case 2");
+		   			boolean caseTwoLoop = true;	//Boolean for the do{}while(); loop
+		   			boolean accountNotFound = true;	//Boolean for the account search
+		   			double amount = 0;
+		   			
+		   			do{
+		   			//	Gives the option to search by account name or number
+		   				System.out.println("\n" + "WITHDRAW MONEY" + "\n" + "To What account do you want to withdraw money from?" + "\n" + "Seach account by" + "\n" + "1. Account Name" + "\n" + "2. Account Number");
+		   				String option = scanner.next();
+			   			switch(option){
+			   			
+			   			//Account Name search
+			   			case "1":
+			   				System.out.println("\n" + "Please enter the");
+				   			System.out.print("Account Name: "); 
+				   			name = scanner.next();
+				   			for(Account str: accountList) {
+				   				//if account is found, print out the balance and change the boolean
+				   				if(str.getName().equals(name)) {
+				   					System.out.print("Amount to withdraw:");
+				   					amount = scanner.nextDouble();
+				   					str.withdraw(amount);				   				
+				   					System.out.println("\n" + amount + "€ was withdrawn from " + str.getAcctNumber());
+				   					accountNotFound = false;
+				   					break;
+				   				}
+				   			}
+				   			//If no account was found this will be printed out
+				   			if(accountNotFound) {
+				   			System.out.println("\n" + "No account was found with that account name");
+				   			}
+			   				
+				   			caseTwoLoop = false;
+			   				break;
+
+				   		///Account Number search	
+			   			case "2":
+				   			System.out.println("\n" + "Please enter the");
+				   			System.out.print("Account Number: "); 
+				   			accountNr = scanner.nextLong();
+				   			for(Account str: accountList) {
+				   			//if account is found, print out the balance and change the boolean
+				   				if(str.getAcctNumber() == accountNr) {
+				   					System.out.print("Amount to withdraw:");
+				   					amount = scanner.nextDouble();
+				   					str.withdraw(amount);				   				
+				   					System.out.println("\n" + amount + "€ was withdrawn from " + str.getAcctNumber());
+				   					accountNotFound = false;
+				   					break;
+				   				}
+				   			}
+				   			//If no account was found this will be printed out
+				   			if(accountNotFound) {
+				   			System.out.println("\n" + "No account was found with that account number");
+				   			}
+				   			caseTwoLoop = false;
+			   				break;
+			   				
+			   			default:
+			   				System.out.println("Invalid input");	//Remind user that the input is wrong
+			   				break;
+			   			}
+		   				
+		   			}while(caseTwoLoop);
+		   			
 		   			break;
 		   			
 		   		//Deposit money to account
 		   		case "3" :
-		   			System.out.println("\n" + "case 3");
-		   			//System.out.println(((Account) accountList.get(0)).deposit(200));
-		   			//System.out.println(accountList.get(0));
+		   			boolean caseThreeLoop = true;	//Boolean for the do{}while(); loop
+		   			accountNotFound = true;	//Boolean for the account search
+		   			amount = 0;				//Amount to deposit
+		   			
+		   			do {
+		   				//Gives the option to search by account name or number
+		   				System.out.println("\n" + "DEPOSIT MONEY" + "\n" + "To What account do you want to deposit money to?" + "\n" + "Seach account by" + "\n" + "1. Account Name" + "\n" + "2. Account Number");
+		   				String option = scanner.next();
+			   			switch(option){
+			   			
+			   			//Account Name search
+			   			case "1":
+			   				System.out.println("\n" + "Please enter the");
+				   			System.out.print("Account Name: "); 
+				   			name = scanner.next();
+				   			for(Account str: accountList) {
+				   				//if account is found, print out the balance and change the boolean
+				   				if(str.getName().equals(name)) {
+				   					System.out.print("Amount to deposit:");
+				   					amount = scanner.nextDouble();
+				   					str.deposit(amount);				   				
+				   					System.out.println("\n" + amount + "€ was deposited to " + str.getAcctNumber());
+				   					accountNotFound = false;
+				   					break;
+				   				}
+				   			}
+				   			//If no account was found this will be printed out
+				   			if(accountNotFound) {
+				   			System.out.println("\n" + "No account was found with that account name");
+				   			}
+			   				
+				   			caseThreeLoop = false;
+			   				break;
+
+				   		///Account Number search	
+			   			case "2":
+				   			System.out.println("\n" + "Please enter the");
+				   			System.out.print("Account Number: "); 
+				   			accountNr = scanner.nextLong();
+				   			for(Account str: accountList) {
+				   			//if account is found, print out the balance and change the boolean
+				   				if(str.getAcctNumber() == accountNr) {
+				   					System.out.print("Amount to deposit:");
+				   					amount = scanner.nextDouble();
+				   					str.deposit(amount);				   				
+				   					System.out.println("\n" + amount + "€ was deposited to " + str.getAcctNumber());
+				   					accountNotFound = false;
+				   					break;
+				   				}
+				   			}
+				   			//If no account was found this will be printed out
+				   			if(accountNotFound) {
+				   			System.out.println("\n" + "No account was found with that account number");
+				   			}
+				   			caseThreeLoop = false;
+			   				break;
+			   				
+			   			default:
+			   				System.out.println("Invalid input");	//Remind user that the input is wrong
+			   				break;
+			   			}
+		   				
+		   			}while(caseThreeLoop);
 		   			break;
 		   			
 		   		//Show balance of account
 		   		case "4" :
 		   			boolean caseFourLoop = true;	//Boolean for the do{}while(); loop
-		   			boolean accountNotFound = true;	//Boolean for the account search
+		   			accountNotFound = true;			//Boolean for the account search
 		   			do {
 		   				//Gives the option to search by account name or number
-		   				System.out.println("\n" + "Do you want to search by" + "\n" + "1. Account Name" + "\n" + "2. Account Number");
+		   				System.out.println("\n" + "SHOW BALANCE" + "\n" + "Do you want to search by" + "\n" + "1. Account Name" + "\n" + "2. Account Number");
 		   				String option = scanner.next();
 			   			switch(option){
 			   			

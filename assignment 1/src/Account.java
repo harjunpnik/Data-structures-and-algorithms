@@ -41,11 +41,12 @@ public class Account
 
    //-----------------------------------------------------------------
    //  Withdraws the specified amount from the account and applies
-   //  the fee. Returns the new balance.
+   //  the fee. The fee is 0,5% of the amount withdrawn.
+   //Returns the new balance.
    //-----------------------------------------------------------------
-   //In our assignment we will ignore fee
-   public double withdraw (double amount, double fee)
+   public double withdraw (double amount)
    {
+	  double fee = amount * 0.0005;
       balance = balance - amount - fee;
 
       return balance;
@@ -83,6 +84,7 @@ public class Account
    {
       return name;
    }
+
 
    //-----------------------------------------------------------------
    //  Returns a one-line description of the account as a string.
