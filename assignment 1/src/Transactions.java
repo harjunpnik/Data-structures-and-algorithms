@@ -33,42 +33,42 @@ public class Transactions
 		   switch(input){
 		   		
 		   		//-----------------------------------------------------------------
-		   		//Create a new Account
+		   		//	Create a new Account
 		   		//-----------------------------------------------------------------
 		   		case "1" :
 		   			System.out.print("\n" + "Name: ");
 		   			String name = scanner.next();
 		   			accountNr = Functions.dataValidationLong("Account Number: ", "Please enter a number");
 		   			balance = Functions.dataValidationDouble("Balance: ", "Please enter a number with or without a comma");
-		   			rate = Functions.dataValidationDouble("Interest rate: ", "Please enter a number with or without a comma");
+		   			rate = Functions.dataValidationDouble("Interest rate (ex. 3 = 3%): ", "Please enter a number with or without a comma");
 		   			
 		   			accountList.add(new Account (name, accountNr, balance, rate));
 		   			System.out.println ( "\n" + "A new account was created: " + "\n" + new Account (name, accountNr, balance, rate));
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Withdraw money from account
+		   		//	Withdraw money from account
 		   		//-----------------------------------------------------------------
 		   		case "2" :
 		   			funcs.accountSearch(accountList, "withdraw", "What account do you want to withdraw money from?" , true, false, false);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Deposit money to account
+		   		//	Deposit money to account
 		   		//-----------------------------------------------------------------
 		   		case "3" :
 		   			funcs.accountSearch(accountList, "deposit", "What account do you want to deposit money to?" , false, true, false);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Show balance of account
+		   		//	Show balance of account
 		   		//-----------------------------------------------------------------
 		   		case "4" :
 		   			funcs.accountSearch(accountList, "balance", "Show balance from account?" , false, false, true);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Show all accounts
+		   		//	Show all accounts
 		   		//-----------------------------------------------------------------
 		   		case "5" :
 		   			//Prints out all the accounts
@@ -79,7 +79,7 @@ public class Transactions
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Add interest
+		   		//	Add interest
 		   		//-----------------------------------------------------------------
 		   		case "6" :
 		   			//Adds interest to all the accounts
@@ -91,7 +91,7 @@ public class Transactions
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//Exit
+		   		//	Exit
 		   		//-----------------------------------------------------------------
 		   		case "7" :
 		   			//Closes the application

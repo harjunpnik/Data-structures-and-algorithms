@@ -34,8 +34,8 @@ public class Account
 
    //-----------------------------------------------------------------
    //  Withdraws the specified amount from the account and applies
-   //  the fee. The fee is 0,5% of the amount withdrawn.
-   //Returns the new balance.
+   //  the fee. The fee is 0,05% of the amount withdrawn.
+   //  Returns the new balance.
    //-----------------------------------------------------------------
    public double withdraw (double amount)
    {

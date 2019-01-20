@@ -8,7 +8,7 @@ public class Functions {
 	
 	private String[] mainMenuOptions = {"Create a new account" , "Withdraw money from account", "Deposit money to account", "Show balance of account", "Show all accounts", "Add interest", "Exit" };
 	//-----------------------------------------------------------------
-	//Main Menu print. Prints the main menu options.
+	//	Main Menu print. Prints the main menu options.
 	//-----------------------------------------------------------------
 	public void mainMenu() {
 		System.out.println("");
@@ -18,7 +18,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//Exit. Prints the exit message and closes the application.
+	//	Exit. Prints the exit message and closes the application.
 	//-----------------------------------------------------------------
 	public void Exit() {
 		System.out.println("\n" + "Goodbye!");
@@ -26,8 +26,8 @@ public class Functions {
 	}
 
 	//-----------------------------------------------------------------
-	//dataValidationDouble. Validates the input so that the result 
-	//will be a double variable.
+	//	dataValidationDouble. Validates the input so that the result 
+	//	will be a double variable.
 	//-----------------------------------------------------------------
 	public static double dataValidationDouble (String helpMsg, String errorMsg) {
 		double doubleToValidate = 0;
@@ -45,8 +45,8 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//dataValidationLong. Validates the input so that the result 
-	//will be a Long variable.
+	//	dataValidationLong. Validates the input so that the result 
+	//	will be a Long variable.
 	//-----------------------------------------------------------------
 	public static long dataValidationLong (String helpMsg, String errorMsg) {
 		long longToValidate = 0;
@@ -64,7 +64,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//showBalance method that is called in the accountSearch
+	//	showBalance method that is called in the accountSearch
 	//-----------------------------------------------------------------
 	private boolean showBalance(Account account) {
 			System.out.println("\n" + "Balance: " + account.getBalance() + "€");
@@ -72,7 +72,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//Deposit method that is called in the accountSearch
+	//	Deposit method that is called in the accountSearch
 	//-----------------------------------------------------------------
 	private boolean deposit(Account account) {
 		double amount = dataValidationDouble("Amount to deposit:", "Please enter a number with or without a comma");
@@ -83,7 +83,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//Withdraw method that is called in the accountSearch
+	//	Withdraw method that is called in the accountSearch
 	//-----------------------------------------------------------------
 	private boolean withdraw(Account account) {
 			double amount = dataValidationDouble("Amount to withdraw:", "Please enter a number with or without a comma");
@@ -94,8 +94,8 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//accountSearch. Searches the right account and executes 
-	//withdraw, deposit or balance method
+	//	accountSearch. Searches the right account and executes 
+	//	withdraw, deposit or balance method
 	//-----------------------------------------------------------------
 	public void accountSearch(ArrayList<Account> accountList, String action, String helpMsg, boolean withdrawBoolean, boolean depositBoolean, boolean balanceBoolean) { 
 			
