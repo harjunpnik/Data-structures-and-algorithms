@@ -18,7 +18,7 @@ public class Transactions
 	   
 	   //Initialization of the array list and some accounts to the bank 
 	   ArrayList<Account>  accountList = new ArrayList<Account>();	
-	   accountList.add(new Account("nick", 911, 1000, 0.05));
+	   accountList.add(new Account("nick", 911, 1000, 3.5));
 	   accountList.add(new Account("john", 711, 5000, 5.5));
       
 	   System.out.println ("Welcome to Generic Bank!" + "\n" + "What would you like to do?");
@@ -41,7 +41,7 @@ public class Transactions
 		   			accountNr = Functions.dataValidationLong("Account Number: ", "Please enter a number");
 		   			balance = Functions.dataValidationDouble("Balance: ", "Please enter a number with or without a comma");
 		   			rate = Functions.dataValidationDouble("Interest rate: ", "Please enter a number with or without a comma");
-		   	
+		   			
 		   			accountList.add(new Account (name, accountNr, balance, rate));
 		   			System.out.println ( "\n" + "A new account was created: " + "\n" + new Account (name, accountNr, balance, rate));
 		   			break;

@@ -4,19 +4,17 @@ import java.util.Scanner;
 
 public class Functions {
 
-	   static Scanner scanner = new Scanner(System.in);
-
+	static Scanner scanner = new Scanner(System.in);
+	
+	private String[] mainMenuOptions = {"Create a new account" , "Withdraw money from account", "Deposit money to account", "Show balance of account", "Show all accounts", "Add interest", "Exit" };
 	//-----------------------------------------------------------------
 	//Main Menu print. Prints the main menu options.
 	//-----------------------------------------------------------------
 	public void mainMenu() {
-		System.out.println("\n" + "1. Create a new account");
-		System.out.println("2. Withdraw money from account");
-		System.out.println("3. Deposit money to account");
-		System.out.println("4. Show balance of account");
-		System.out.println("5. Show all accounts");
-		System.out.println("6. Add interest");
-		System.out.println("7. Exit");
+		System.out.println("");
+		for(int i=1; i <= mainMenuOptions.length; i++) {
+			System.out.println(i + ". "+ mainMenuOptions[i-1]);
+		}
 	}
 	
 	//-----------------------------------------------------------------
@@ -26,8 +24,7 @@ public class Functions {
 		System.out.println("\n" + "Goodbye!");
 		System.exit(0);
 	}
-	
-	
+
 	//-----------------------------------------------------------------
 	//dataValidationDouble. Validates the input so that the result 
 	//will be a double variable.
@@ -40,7 +37,7 @@ public class Functions {
    			doubleToValidate = scanner.nextDouble();
    			
    			} catch(InputMismatchException ex) {
-   				System.out.println(errorMsg);
+   				System.out.println("\n" + errorMsg);
    				scanner.next();
    			}
 			}
@@ -59,7 +56,7 @@ public class Functions {
    			longToValidate = scanner.nextLong();
    			
    			} catch(InputMismatchException ex) {
-   				System.out.println(errorMsg);
+   				System.out.println("\n" + errorMsg);
    				scanner.next();
    			}
 			}

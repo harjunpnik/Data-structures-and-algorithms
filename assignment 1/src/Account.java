@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Account
@@ -17,7 +18,7 @@ public class Account
       this.name = name;
       this.acctNumber = acctNumber;
       this.balance = balance;
-      this.rate = rate;
+      this.rate = rate / 100;
    }
 
    //-----------------------------------------------------------------
@@ -78,6 +79,7 @@ public class Account
    }
 
 
+   DecimalFormat deciamlFormat = new DecimalFormat("##.##");
    //-----------------------------------------------------------------
    //  Returns a one-line description of the account as a string.
    //-----------------------------------------------------------------
@@ -85,6 +87,6 @@ public class Account
    {
       NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
-      return (acctNumber + "\t" + name + "\t" + fmt.format(balance) + "\t" + rate);
+      return (acctNumber + "\t" + name + "\t" + fmt.format(balance) + "\t" + deciamlFormat.format(rate * 100) + "%");
    }
 }
