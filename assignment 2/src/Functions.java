@@ -6,7 +6,7 @@ public class Functions {
 
 	static Scanner scanner = new Scanner(System.in);
 	
-	private String[] mainMenuOptions = {"Create a new account" , "Withdraw money from account", "Deposit money to account", "Show balance of account", "Show all accounts", "Add interest", "Exit" };
+	private String[] mainMenuOptions = {"Create a new account" , "Withdraw money from account", "Deposit money to account", "Show balance of account", "Show all accounts", "Exit" };
 	//-----------------------------------------------------------------
 	//	Main Menu print. Prints the main menu options.
 	//-----------------------------------------------------------------
@@ -18,11 +18,28 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	Exit. Prints the exit message and closes the application.
+	//	exit. Prints the exit message and closes the application.
 	//-----------------------------------------------------------------
-	public void Exit() {
+	public void exit() {
 		System.out.println("\n" + "Goodbye!");
 		System.exit(0);
+	}
+	
+	//-----------------------------------------------------------------
+	//	accountCreator. Asks the user for input for the account
+	//-----------------------------------------------------------------
+	public String[] accountCreator() {
+			System.out.println("Please enter the following information: ");
+			System.out.print("\n" + "Name: ");
+			String name = scanner.next();
+			long accountNr = Functions.dataValidationLong("Account Number: ", "Please enter a number");
+			double balance = Functions.dataValidationDouble("Balance: ", "Please enter a number with or without a comma");
+			String [] account = new String[3];
+			account[0] = name;
+			account[1] = Long.toString(accountNr);
+			account[2] = Double.toString(balance);
+			
+			return account;
 	}
 
 	//-----------------------------------------------------------------

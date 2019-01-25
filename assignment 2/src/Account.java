@@ -1,11 +1,9 @@
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class Account
+public abstract class Account
 {
    private String name;
    private long acctNumber;
-   private double rate;  
    private double balance;
   
 
@@ -13,12 +11,11 @@ public class Account
    //  Sets up the account by defining its owner, account number,
    //  and initial balance.
    //-----------------------------------------------------------------
-   public Account (String name, long acctNumber, double balance, double rate)
+   public Account (String name, long acctNumber, double balance)
    {
       this.name = name;
       this.acctNumber = acctNumber;
       this.balance = balance;
-      this.rate = rate / 100;
    }
 
    //-----------------------------------------------------------------
@@ -48,11 +45,7 @@ public class Account
    //-----------------------------------------------------------------
    //  Adds interest to the account and returns the new balance.
    //-----------------------------------------------------------------
-   public double addInterest ()
-   {
-      balance += (balance * rate);
-      return balance;
-   }
+   public abstract void addInterest ();
 
    //-----------------------------------------------------------------
    //  Returns the current balance of the account.
@@ -60,6 +53,13 @@ public class Account
    public double getBalance ()
    {
       return balance;
+   }
+   
+   //-----------------------------------------------------------------
+   //  Sets the balance of the current account
+   //-----------------------------------------------------------------
+   public void setBalance(double balance) {
+	   this.balance = balance;
    }
    
    //-----------------------------------------------------------------
@@ -78,8 +78,6 @@ public class Account
       return name;
    }
 
-
-   DecimalFormat deciamlFormat = new DecimalFormat("##.##");
    //-----------------------------------------------------------------
    //  Returns a one-line description of the account as a string.
    //-----------------------------------------------------------------
@@ -87,6 +85,6 @@ public class Account
    {
       NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
-      return (acctNumber + "\t" + name + "\t" + fmt.format(balance) + "\t" + deciamlFormat.format(rate * 100) + "%");
+      return (acctNumber + "\t" + name + "\t" + fmt.format(balance) );
    }
 }

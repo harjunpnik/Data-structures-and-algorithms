@@ -11,19 +11,17 @@ public class Transactions
 	   Scanner scanner = new Scanner(System.in);
 	   
 	   //Initialization of variables
-	   long accountNr = 0;
-	   double balance = 0;
-	   double rate = 0;
+	   String[] newAccount;
 
 	   
 	   //Initialization of the array list and some accounts to the bank 
 	   ArrayList<Account>  accountList = new ArrayList<Account>();	
-	   accountList.add(new Account("nick", 911, 1000, 3.5));
-	   accountList.add(new Account("john", 711, 5000, 5.5));
+	   accountList.add(new SavingsAccount("nick", 911, 1000));
+	   accountList.add(new CheckingAccount("john", 711, 5000));
       
 	   System.out.println ("Welcome to Generic Bank!" + "\n" + "What would you like to do?");
 	   
-	   //Loop until the user enters "7" as his input
+	   //Loop until the user enters "6" as his input
 	   do{
 		   //Prints the main menu
 		   funcs.mainMenu();		 
@@ -36,14 +34,33 @@ public class Transactions
 		   		//	Create a new Account
 		   		//-----------------------------------------------------------------
 		   		case "1" :
-		   			System.out.print("\n" + "Name: ");
-		   			String name = scanner.next();
-		   			accountNr = Functions.dataValidationLong("Account Number: ", "Please enter a number");
-		   			balance = Functions.dataValidationDouble("Balance: ", "Please enter a number with or without a comma");
-		   			rate = Functions.dataValidationDouble("Interest rate (ex. 3 = 3%): ", "Please enter a number with or without a comma");
+		   			boolean loopIsActive = true;
 		   			
-		   			accountList.add(new Account (name, accountNr, balance, rate));
-		   			System.out.println ( "\n" + "A new account was created: " + "\n" + new Account (name, accountNr, balance, rate));
+		   			do {
+		   				//Asks the user to choose whether they want to create a Savings account or a Checking account
+		   				System.out.println("\n" + "CREATA A ACCOUNT" + "\n" + "Do you want to create a" + "\n" + "1. Savings Account" + "\n" + "2. Checking Account");
+		   				input = scanner.next();
+		   				switch(input) {
+		   				
+		   				case "1" :
+		   					newAccount = funcs.accountCreator();
+		   					accountList.add(new SavingsAccount(newAccount[0], Long.parseLong(newAccount[1]), Double.parseDouble(newAccount[2])));
+		   					loopIsActive = false;
+		   					break;
+		   					
+		   				case "2" :
+		   					newAccount = funcs.accountCreator();
+			   				accountList.add(new CheckingAccount(newAccount[0], Long.parseLong(newAccount[1]), Double.parseDouble(newAccount[2])));
+			   				loopIsActive = false;
+		   					break;
+		   					
+		   				default :
+		   					System.out.println("Invalid input");	//Remind user that the input is wrong
+		   					break;
+		   					
+		   				}
+		   
+		   			}while(loopIsActive);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
@@ -79,24 +96,12 @@ public class Transactions
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Add interest
-		   		//-----------------------------------------------------------------
-		   		case "6" :
-		   			//Adds interest to all the accounts
-		   			System.out.println();
-		   			for(Account str: accountList) {
-		   				str.addInterest();
-		   			}
-	   				System.out.println("Interest has been added to the accounts");
-		   			break;
-		   			
-		   		//-----------------------------------------------------------------
 		   		//	Exit
 		   		//-----------------------------------------------------------------
-		   		case "7" :
+		   		case "6" :
 		   			//Closes the application
 		   			scanner.close();
-		   			funcs.Exit();
+		   			funcs.exit();
 		   			break;
 		   			
 		   		default :
