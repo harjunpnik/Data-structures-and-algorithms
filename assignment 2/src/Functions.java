@@ -49,6 +49,7 @@ public class Functions {
 	public static double dataValidationDouble (String helpMsg, String errorMsg) {
 		double doubleToValidate = 0;
 		while(doubleToValidate < 1) {
+			if(doubleToValidate < 0)System.out.println("\n" + "Please enter a positive number.");
    			try {
    			System.out.print(helpMsg); 
    			doubleToValidate = scanner.nextDouble();
@@ -68,7 +69,8 @@ public class Functions {
 	public static long dataValidationLong (String helpMsg, String errorMsg) {
 		long longToValidate = 0;
 		while(longToValidate < 1) {
-   			try {
+			if(longToValidate < 0)System.out.println("\n" + "Please enter a positive number.");
+			try {
    			System.out.print(helpMsg); 
    			longToValidate = scanner.nextLong();
    			

@@ -10,15 +10,17 @@ public class Transactions
 	   Functions funcs = new Functions();
 	   Scanner scanner = new Scanner(System.in);
 	   
-	   //Initialization of variables
-	   String[] newAccount;
-
-	   
 	   //Initialization of the array list and some accounts to the bank 
 	   ArrayList<Account>  accountList = new ArrayList<Account>();	
 	   accountList.add(new SavingsAccount("nick", 911, 1000));
-	   accountList.add(new CheckingAccount("john", 711, 5000));
-      
+	   accountList.add(new CheckingAccount("john", 711, 100));
+	   
+	   //Initialization of variables
+	   String[] newAccount;
+	   InterestHandler interestHandlerTimer = new InterestHandler(accountList);
+	   interestHandlerTimer.start();
+	   
+
 	   System.out.println ("Welcome to Generic Bank!" + "\n" + "What would you like to do?");
 	   
 	   //Loop until the user enters "6" as his input
@@ -42,12 +44,15 @@ public class Transactions
 		   				input = scanner.next();
 		   				switch(input) {
 		   				
+		   				//Savings Account
 		   				case "1" :
+		   					//Calls a method to get the user inputed data in a String array then adds the account to the account list
 		   					newAccount = funcs.accountCreator();
 		   					accountList.add(new SavingsAccount(newAccount[0], Long.parseLong(newAccount[1]), Double.parseDouble(newAccount[2])));
 		   					loopIsActive = false;
 		   					break;
 		   					
+		   				//Checking Account
 		   				case "2" :
 		   					newAccount = funcs.accountCreator();
 			   				accountList.add(new CheckingAccount(newAccount[0], Long.parseLong(newAccount[1]), Double.parseDouble(newAccount[2])));
@@ -101,7 +106,17 @@ public class Transactions
 		   		case "6" :
 		   			//Closes the application
 		   			scanner.close();
+		   			interestHandlerTimer.interrupt();
 		   			funcs.exit();
+		   			break;
+		   			
+		   		case "7" :
+		   			//Adds interest to all the accounts
+		   			System.out.println();
+		   			for(Account str: accountList) {
+		   				str.addInterest();
+		   			}
+	   				System.out.println("Interest has been added to the accounts");
 		   			break;
 		   			
 		   		default :
