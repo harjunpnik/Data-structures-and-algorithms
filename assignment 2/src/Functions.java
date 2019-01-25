@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	accountCreator. Asks the user for input for the account
+	//	accountCreator. Asks the user for input for the account.
 	//-----------------------------------------------------------------
 	public String[] accountCreator() {
 			System.out.println("Please enter the following information: ");
@@ -84,14 +85,21 @@ public class Functions {
 	
 	//-----------------------------------------------------------------
 	//	showBalance method that is called in the accountSearch
+	//	Depending on if the account is a savings or checking account
+	//	this will also show the total interest or the net deposits.
 	//-----------------------------------------------------------------
 	private boolean showBalance(Account account) {
-			System.out.println("\n" + "Balance: " + account.getBalance() + "€");
-			return false;
+		DecimalFormat deciamlFormat = new DecimalFormat("##.##");
+		
+		if (account instanceof SavingsAccount)System.out.println("\n" + "Total interest: " + deciamlFormat.format(account.viewBalanceBonus()) + " €");
+		if (account instanceof CheckingAccount)System.out.println("\n" + "Net Deposits: " + deciamlFormat.format(account.viewBalanceBonus()) + " €");
+		
+		System.out.println("Balance: " + deciamlFormat.format(account.getBalance()) + "€");
+		return false;
 	}
 	
 	//-----------------------------------------------------------------
-	//	Deposit method that is called in the accountSearch
+	//	Deposit method that is called in the accountSearch.
 	//-----------------------------------------------------------------
 	private boolean deposit(Account account) {
 		double amount = dataValidationDouble("Amount to deposit:", "Please enter a number with or without a comma");
@@ -102,7 +110,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	Withdraw method that is called in the accountSearch
+	//	Withdraw method that is called in the accountSearch.
 	//-----------------------------------------------------------------
 	private boolean withdraw(Account account) {
 			double amount = dataValidationDouble("Amount to withdraw:", "Please enter a number with or without a comma");
@@ -114,7 +122,7 @@ public class Functions {
 	
 	//-----------------------------------------------------------------
 	//	accountSearch. Searches the right account and executes 
-	//	withdraw, deposit or balance method
+	//	withdraw, deposit or balance method.
 	//-----------------------------------------------------------------
 	public void accountSearch(ArrayList<Account> accountList, String action, String helpMsg, boolean withdrawBoolean, boolean depositBoolean, boolean balanceBoolean) { 
 			

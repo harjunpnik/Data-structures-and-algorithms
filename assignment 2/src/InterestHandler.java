@@ -11,7 +11,7 @@ public class InterestHandler extends Thread {
 		this.accountList = accountList;
 	}
 	
-	public void interestCalculator() {
+	private void interestCalculator() {
 			//Adds interest to all the accounts
 			for(Account str: accountList) {
 				str.addInterest();

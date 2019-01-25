@@ -33,7 +33,7 @@ public class Transactions
 		   switch(input){
 		   		
 		   		//-----------------------------------------------------------------
-		   		//	Create a new Account
+		   		//	Create a new Account.
 		   		//-----------------------------------------------------------------
 		   		case "1" :
 		   			boolean loopIsActive = true;
@@ -54,6 +54,7 @@ public class Transactions
 		   					
 		   				//Checking Account
 		   				case "2" :
+		   					//Calls a method to get the user inputed data in a String array then adds the account to the account list
 		   					newAccount = funcs.accountCreator();
 			   				accountList.add(new CheckingAccount(newAccount[0], Long.parseLong(newAccount[1]), Double.parseDouble(newAccount[2])));
 			   				loopIsActive = false;
@@ -69,28 +70,28 @@ public class Transactions
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Withdraw money from account
+		   		//	Withdraw money from account.
 		   		//-----------------------------------------------------------------
 		   		case "2" :
 		   			funcs.accountSearch(accountList, "withdraw", "What account do you want to withdraw money from?" , true, false, false);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Deposit money to account
+		   		//	Deposit money to account.
 		   		//-----------------------------------------------------------------
 		   		case "3" :
 		   			funcs.accountSearch(accountList, "deposit", "What account do you want to deposit money to?" , false, true, false);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Show balance of account
+		   		//	Show balance of account.
 		   		//-----------------------------------------------------------------
 		   		case "4" :
 		   			funcs.accountSearch(accountList, "balance", "Show balance from account?" , false, false, true);
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Show all accounts
+		   		//	Show all accounts.
 		   		//-----------------------------------------------------------------
 		   		case "5" :
 		   			//Prints out all the accounts
@@ -101,22 +102,13 @@ public class Transactions
 		   			break;
 		   			
 		   		//-----------------------------------------------------------------
-		   		//	Exit
+		   		//	Exit.
 		   		//-----------------------------------------------------------------
 		   		case "6" :
 		   			//Closes the application
 		   			scanner.close();
 		   			interestHandlerTimer.interrupt();
 		   			funcs.exit();
-		   			break;
-		   			
-		   		case "7" :
-		   			//Adds interest to all the accounts
-		   			System.out.println();
-		   			for(Account str: accountList) {
-		   				str.addInterest();
-		   			}
-	   				System.out.println("Interest has been added to the accounts");
 		   			break;
 		   			
 		   		default :
