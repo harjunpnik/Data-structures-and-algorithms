@@ -1,4 +1,3 @@
-
 public class CheckingAccount extends Account {
 	
 	private double rate = 0.01;

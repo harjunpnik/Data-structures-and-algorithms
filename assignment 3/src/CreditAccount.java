@@ -1,4 +1,3 @@
-
 public class CreditAccount extends Account {
 
 	private double rate = 0.3;
