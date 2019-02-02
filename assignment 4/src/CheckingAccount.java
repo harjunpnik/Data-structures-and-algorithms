@@ -22,7 +22,7 @@ public class CheckingAccount extends Account {
 	public double deposit(double amount) {
 		totalDeposits += amount;
 		this.setBalance(this.getBalance() + amount );
-		return this.getBalance();
+		return amount;
 	}
 	
 	//Overridden, also calculates the total withdraws   
@@ -31,7 +31,7 @@ public class CheckingAccount extends Account {
 		totalWithdraws += amount;
 		double fee = amount * 0.0005;
 		this.setBalance(this.getBalance() - amount - fee);
-		return this.getBalance();
+		return amount;
 	}
 
 	//-----------------------------------------------------------------

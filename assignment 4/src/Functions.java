@@ -83,9 +83,9 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	showBalance method that is called in the accountSearch
-	//	Depending on if the account is a savings or checking account
-	//	this will also show the total interest or the net deposits.
+	//	showBalance method. Depending on if the account is a 
+	//	savings or checking account this will also show the 
+	//	total interest or the net deposits.
 	//-----------------------------------------------------------------
 	public boolean showBalance(Account account) {
 		DecimalFormat deciamlFormat = new DecimalFormat("##.##");
@@ -98,7 +98,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	Deposit method that is called in the accountSearch.
+	//	Deposit method 
 	//-----------------------------------------------------------------
 	public boolean deposit(Account account) {
 		double amount = dataValidationDouble("Amount to deposit:", "Please enter a number with or without a comma");
@@ -109,7 +109,7 @@ public class Functions {
 	}
 	
 	//-----------------------------------------------------------------
-	//	Withdraw method that is called in the accountSearch.
+	//	Withdraw method
 	//-----------------------------------------------------------------
 	public boolean withdraw(Account account) {
 			double amount = dataValidationDouble("Amount to withdraw:", "Please enter a number with or without a comma");
@@ -119,6 +119,10 @@ public class Functions {
 			return false;
 	}
 	
+	//-----------------------------------------------------------------
+	//	accountSearch method. When no account is found it returns "0"
+	//	otherwise it returns the account number that was searched with
+	//-----------------------------------------------------------------
 	public long accountSearcher(HashMap<Long, Account> accountList) {
 		System.out.println("\n" + "Please enter the");
 		long accountNr = dataValidationLong("Account Number: ", "Please enter a number");

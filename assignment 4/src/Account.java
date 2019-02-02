@@ -9,6 +9,10 @@ public abstract class Account{
    
    private static long accountNumberTemp = 0;
 
+   //-----------------------------------------------------------------
+   //	newAccountNumber. Increments the last account number and 
+   //	returns it.
+   //-----------------------------------------------------------------  
    static long newAccountNumber() {
 	   accountNumberTemp++;
 	   return accountNumberTemp;

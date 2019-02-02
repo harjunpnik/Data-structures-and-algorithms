@@ -90,6 +90,7 @@ public class Transactions
 		   		//-----------------------------------------------------------------
 		   		case "2" :
 		   			tempAccountNumber = funcs.accountSearcher(accountList);
+		   			//if account is not a match we return a "0" and that is why we compare to "0"
 		   			if(!(tempAccountNumber == 0)) {
 		   				tempAccount = accountList.get(tempAccountNumber);
 			   			funcs.withdraw(tempAccount);
@@ -101,6 +102,7 @@ public class Transactions
 		   		//-----------------------------------------------------------------
 		   		case "3" :
 		   			tempAccountNumber = funcs.accountSearcher(accountList);
+		   			//if account is not a match we return a "0" and that is why we compare to "0"
 		   			if(!(tempAccountNumber == 0)) {
 		   				tempAccount = accountList.get(tempAccountNumber);
 			   			funcs.deposit(tempAccount);
@@ -112,6 +114,7 @@ public class Transactions
 		   		//-----------------------------------------------------------------
 		   		case "4" :
 		   			tempAccountNumber = funcs.accountSearcher(accountList);
+		   			//if account is not a match we return a "0" and that is why we compare to "0"
 		   			if(!(tempAccountNumber == 0)) {
 		   				tempAccount = accountList.get(tempAccountNumber);
 			   			funcs.showBalance(tempAccount);

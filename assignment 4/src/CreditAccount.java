@@ -8,17 +8,19 @@ public class CreditAccount extends Account {
 		super(name,acctNumber,balance, "CreditAccount");
 	}
 	
+	//Overridden deposit method, checks if the deposit amount is within the limits
 	@Override
 	public double deposit (double amount){
 		if(-amount >= this.getBalance()) {
 	     this.setBalance(this.getBalance() + amount);
-		   return this.getBalance();
+		   return amount;
 		}else {
 			System.out.println("\n" + "You cannot deposit more money than you are in debt");
 			return 0;
 		}
 	}
 	
+	//Overridden withdraw method, checks if the withdrawal amount is within the limits
 	@Override
 	public double withdraw (double amount){
 		double fee = amount * 0.0005;
@@ -33,6 +35,9 @@ public class CreditAccount extends Account {
 		}
 	}	
 	
+	//-----------------------------------------------------------------
+	//  Adds the interest to the balance
+	//----------------------------------------------------------------- 
 	@Override
 	public void addInterest() {
 		double newBalance = this.getBalance() + (this.getBalance() * rate);
