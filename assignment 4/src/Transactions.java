@@ -55,6 +55,9 @@ public class Transactions
 		   					newAccount = funcs.accountCreator(false);
 		   					tempAccountNumber = Account.newAccountNumber();
 		   					accountList.put(tempAccountNumber, new SavingsAccount(newAccount[0], tempAccountNumber, Double.parseDouble(newAccount[1])));
+		   					System.out.println("\n" + "New Account was created");
+		   					System.out.println(String.format("%1s%9s%15s%20s", "Nr" , "Name" , "Balance" , "Type"));
+		   					System.out.println(accountList.get(tempAccountNumber).toString());
 		   					loopIsActive = false;
 		   					break;
 		   					
@@ -64,6 +67,9 @@ public class Transactions
 		   					newAccount = funcs.accountCreator(false);
 		   					tempAccountNumber = Account.newAccountNumber();
 			   				accountList.put(tempAccountNumber, new CheckingAccount(newAccount[0],tempAccountNumber, Double.parseDouble(newAccount[1])));
+		   					System.out.println("\n" + "New Account was created");
+		   					System.out.println(String.format("%1s%9s%15s%20s", "Nr" , "Name" , "Balance" , "Type"));
+		   					System.out.println(accountList.get(tempAccountNumber).toString());
 			   				loopIsActive = false;
 		   					break;
 		   					
@@ -73,6 +79,9 @@ public class Transactions
 		   					newAccount = funcs.accountCreator(true);
 		   					tempAccountNumber = Account.newAccountNumber();
 			   				accountList.put(tempAccountNumber, new CheckingAccount(newAccount[0], tempAccountNumber, 0));
+		   					System.out.println("\n" + "New Account was created");
+		   					System.out.println(String.format("%1s%9s%15s%20s", "Nr" , "Name" , "Balance" , "Type"));
+		   					System.out.println(accountList.get(tempAccountNumber).toString());
 			   				loopIsActive = false;
 		   					break;
 		   					

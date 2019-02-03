@@ -36,7 +36,7 @@ public class CreditAccount extends Account {
 	}	
 	
 	//-----------------------------------------------------------------
-	//  Adds the interest to the balance
+	//  Adds the interest to the balance.
 	//----------------------------------------------------------------- 
 	@Override
 	public void addInterest() {
