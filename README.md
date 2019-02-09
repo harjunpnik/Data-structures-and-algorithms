@@ -1,5 +1,8 @@
 # Data-structures-and-algorithms
-Data structures and algorithms course work
+Data structures and algorithms course work. 
+
+All the assignments have a ".bat" file for running the program in a command console. The src files can be also put in an IDE and run from there.
+
 
 ## Assignment 1
 Assignment 1 is a bank account application where you are able to:
