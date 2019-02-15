@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Pathfinding {
 
@@ -6,8 +7,10 @@ public class Pathfinding {
 		
 		 Functions functions = new Functions();
 		 
-		 functions.createGraph();
-
+		 ArrayList<Node> graph = functions.createGraph();
+		 
+		 functions.showNodesAndLinks(graph);
+			 
 	}
 
 }

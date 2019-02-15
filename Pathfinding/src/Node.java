@@ -12,6 +12,7 @@ public class Node {
 		setName(name);
 		setLatitude(latitude);
 		setLongitude(longitude);
+		neighbours = new ArrayList<Node>(); 
 	}
 	
 	//	Name

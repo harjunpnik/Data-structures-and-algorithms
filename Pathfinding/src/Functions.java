@@ -2,9 +2,10 @@ import java.util.ArrayList;
 
 public class Functions {
 
+	//	Creates the initial linked list
     public ArrayList<Node> createGraph()
     {
-        //Skapar en nod för varje tågstation
+        //	Creates a node for each train station
         Node hki = new Node("Helsingfors", 60.1640504, 24.7600896);    
         Node tpe = new Node("Tammerfors", 61.6277369, 23.5501169);     
         Node tku = new Node("Abo", 60.4327477, 22.0853171);            
@@ -12,34 +13,34 @@ public class Functions {
         Node kpo = new Node("Kuopio", 62.9950487, 26.556762);          
         Node lhi = new Node("Lahtis", 60.9948736, 25.5747703);         
              
-        //Förbindelser från Helsingfors tågstation
-        hki.addNeighbour(tpe); //Tammerfors
-        hki.addNeighbour(tku); //Åbo
+        //	Train routes from Helsinki
+        hki.addNeighbour(tpe); //Tampere
+        hki.addNeighbour(tku); //Turku
         hki.addNeighbour(lhi); //Lahtis
        
-        //Förbindelser från Tammerfors tågstation
-        tpe.addNeighbour(hki); //Helsingfors
-        tpe.addNeighbour(tku); //Åbo
+        //	Train routes from Tampere
+        tpe.addNeighbour(hki); //Helsinki
+        tpe.addNeighbour(tku); //Turku
         tpe.addNeighbour(jyv); //Jyväskylä
         tpe.addNeighbour(lhi); //Lahtis
         
-        //Förbindelser från Åbo tågstation
-        tku.addNeighbour(hki); //Helsingfors
-        tku.addNeighbour(tpe); //Tammerfors
+        //	Train routes from Turku
+        tku.addNeighbour(hki); //Helsinki
+        tku.addNeighbour(tpe); //Tampere
          
-        //Förbindelser från Jyväskylä tågstation
-        jyv.addNeighbour(tpe); //Tammerfors
+        //	Train routes from Jyväskylä
+        jyv.addNeighbour(tpe); //Tampere
         
-        //Förbindelser från Kuopio tågstation
+        //	Train routes from Kuopio
         kpo.addNeighbour(lhi); //Lahtis
         
-        //Förbindelser från Lahtis tågstation
-        lhi.addNeighbour(hki); //Helsingors
-        lhi.addNeighbour(tpe); //Tammerfors
+        //	Train routes from Lahtis
+        lhi.addNeighbour(hki); //Helsinki
+        lhi.addNeighbour(tpe); //Tampere
         lhi.addNeighbour(kpo); //Kuopio
-                
-        //Skapar en lista för grafen och sätter in alla noder
-        ArrayList<Node> graph = new ArrayList();
+        
+        //	Creates a list for the graph and adds all the nodes
+        ArrayList<Node> graph = new ArrayList<Node>();
         graph.add(hki);
         graph.add(tpe);
         graph.add(tku);
@@ -48,6 +49,21 @@ public class Functions {
         graph.add(lhi);
         
         return graph;
+    }
+    
+    //	Shows the name of the node an all the train routes
+    public void showNodesAndLinks( ArrayList<Node> graph) {
+    	
+    	for(Node node: graph){
+    		System.out.println(node.getName());
+    		ArrayList<Node> tempArray = node.getNeighbours();
+    		
+    		for(Node neighbour: tempArray){
+    			System.out.println("    " + neighbour.getName());
+    		}
+    		System.out.println();
+		 }
+    	
     }
 	
 }
