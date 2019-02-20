@@ -1,8 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class Functions {
+
+	Scanner scanner = new Scanner(System.in);
 	
-//	Creates the initial linked list
+	//	TODO CHANGE TO HASHMAP 
     public ArrayList<Node> createLargeGraph()
     {
         //	Creates a node for each train station
@@ -137,12 +141,13 @@ public class Functions {
     }
 
 	//	Creates the initial linked list
-    public ArrayList<Node> createGraph()
+    
+    public HashMap<String, Node> createGraph()
     {
         //	Creates a node for each train station
-        Node hki = new Node("Helsingfors", 60.1640504, 24.7600896);    
-        Node tpe = new Node("Tammerfors", 61.6277369, 23.5501169);     
-        Node tku = new Node("Abo", 60.4327477, 22.0853171);            
+        Node hki = new Node("Helsinki", 60.1640504, 24.7600896);    
+        Node tpe = new Node("Tampere", 61.6277369, 23.5501169);     
+        Node tku = new Node("Turku", 60.4327477, 22.0853171);            
         Node jyv = new Node("Jyväskylä", 62.1373432, 25.0954598);      
         Node kpo = new Node("Kuopio", 62.9950487, 26.556762);          
         Node lhi = new Node("Lahtis", 60.9948736, 25.5747703);         
@@ -174,21 +179,21 @@ public class Functions {
         lhi.addNeighbour(kpo); //Kuopio
         
         //	Creates a list for the graph and adds all the nodes
-        ArrayList<Node> graph = new ArrayList<Node>();
-        graph.add(hki);
-        graph.add(tpe);
-        graph.add(tku);
-        graph.add(jyv);
-        graph.add(kpo);
-        graph.add(lhi);
+        HashMap<String, Node> graph = new HashMap<String, Node>();
+        graph.put(hki.getName(), hki);
+        graph.put(tpe.getName(), tpe);
+        graph.put(tku.getName(), tku);
+        graph.put(jyv.getName(), jyv);
+        graph.put(kpo.getName(), kpo);
+        graph.put(lhi.getName(), lhi);
         
         return graph;
     }
     
     //	Shows the name of the node an all the train routes
-    public void showNodesAndLinks(ArrayList<Node> graph) {
+    public void showNodesAndLinks(HashMap<String, Node> graph) {
     	
-    	for(Node node: graph){
+    	for(Node node: graph.values()){
     		System.out.println(node.getName());
     		ArrayList<Node> tempArray = node.getNeighbours();
     		
@@ -200,6 +205,7 @@ public class Functions {
     	
     }
 	
+    //	Calculates the distance from two coordinates and returns a value in km
     public double getDistance(double lon1, double lat1, double lon2, double lat2)
     {
         lon1 = lon1*Math.PI/180.0;
@@ -214,5 +220,22 @@ public class Functions {
         double km = 6367 * c; // Earths radius in KM times metres
 
         return km;
+    }
+
+    //	Checks if the input is valid and returns a String of the input
+    public String getStringInput(HashMap<String, Node> graph) {
+    	
+    	boolean loopIsActive = true;
+    	String input;
+    	
+    	do {
+    		input = scanner.nextLine();
+	    	if(graph.containsKey(input)) {
+	    		loopIsActive = false;
+	    	}else {
+	    		System.out.println("\n" + "Please enter a valid city name. Ex. Helsinki, Jyväskylä");
+	    	}
+    	}while(loopIsActive);
+    	return input;
     }
 }
