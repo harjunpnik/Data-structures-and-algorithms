@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Node {
 
+	Functions functions = new Functions();
 	private String name;
 	private double latitude;
 	private double longitude;
@@ -52,6 +53,10 @@ public class Node {
 		return neighbours;
 	}
 	
+	public double calculateH(Node destination) {
+		double hValue = functions.getDistance(longitude, latitude, destination.getLongitude(), destination.getLatitude());
+		return hValue;
+	}
 	
 	
 }

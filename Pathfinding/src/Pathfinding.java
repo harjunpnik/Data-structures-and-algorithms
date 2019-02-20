@@ -10,7 +10,10 @@ public class Pathfinding {
 		 ArrayList<Node> graph = functions.createGraph();
 		 
 		 functions.showNodesAndLinks(graph);
+		 
+		 System.out.println(functions.getDistance(graph.get(0).getLongitude(), graph.get(0).getLatitude(),graph.get(3).getLongitude(), graph.get(3).getLatitude()));
 			 
+		 System.out.println(graph.get(0).calculateH(graph.get(3)));
 	}
 
 }
