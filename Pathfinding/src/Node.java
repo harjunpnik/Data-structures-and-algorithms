@@ -7,6 +7,7 @@ public class Node {
 	private double latitude;
 	private double longitude;
 	private ArrayList<Node> neighbours;
+	private Node previousNode;
 	
 	//	Constructor
 	public Node(String name, double longitude, double latitude) {
@@ -53,10 +54,40 @@ public class Node {
 		return neighbours;
 	}
 	
+	// Previous
+	public void setPreviousNode(Node previousNode) {
+		this.previousNode = previousNode;
+	}
+	
+	public Node getPreviousNode() {
+		return previousNode;
+	}
+	
+	
 	public double calculateH(Node destination) {
 		double hValue = functions.getDistance(longitude, latitude, destination.getLongitude(), destination.getLatitude());
 		return hValue;
 	}
 	
+	public double calculateG(Node startNode) {
+		double g = 0;
+		Node current = this;
+		
+		do{
+			if(current == startNode) {
+				//System.out.println("CURRENT = START");
+				continue;
+			}
+			
+			g += functions.getDistance(current.getLongitude(), current.getLatitude(), current.getPreviousNode().getLongitude(), current.getPreviousNode().getLatitude());
+			//System.out.println(g);
+			System.out.println("Current : " + current.getName() + " previous: " + current.getPreviousNode().getName());
+
+			current = current.getPreviousNode();
+			
+		}while(current != startNode);
+			
+		return g;
+	}
 	
 }
