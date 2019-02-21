@@ -140,7 +140,7 @@ public class Functions {
         return graph;
     }
 
-	//	Creates the initial linked list
+    //	CREATES THE INITIAL LINKED LIST, SMALLER VERSION
     
     public HashMap<String, Node> createGraph()
     {
@@ -190,8 +190,12 @@ public class Functions {
         return graph;
     }
     
-    //	Shows the name of the node an all the train routes
+    //	SHOWS THE NAME OF ALL THE NODEs AND ALL THE TRAIN ROUTES FROM THAT NODE
     public void showNodesAndLinks(HashMap<String, Node> graph) {
+    	
+    	System.out.println("ALL THE TRAIN STATIONS AND DIRECT ROADS TO OTHER TRAIN STATIONS" );
+    	System.out.println("---------------------------------------------------------------" );
+    	System.out.println();
     	
     	for(Node node: graph.values()){
     		System.out.println(node.getName());
@@ -203,9 +207,11 @@ public class Functions {
     		System.out.println();
 		 }
     	
+    	System.out.println("---------------------------------------------------------------" );
+    	System.out.println();
     }
 	
-    //	Calculates the distance from two coordinates and returns a value in km
+    //	CALCULATES THE DISTANCE FROM TWO COORDINATES AND RETURNS A VALUE IN KM
     public double getDistance(double lon1, double lat1, double lon2, double lat2)
     {
         lon1 = lon1*Math.PI/180.0;
@@ -222,7 +228,7 @@ public class Functions {
         return km;
     }
 
-    //	Checks if the input is valid and returns a String of the input
+    //	CHECKS IF THE INPUT IS VALID AND RETURNS A STRING OF THE INPUT
     public String getStringInput(HashMap<String, Node> graph) {
     	
     	boolean loopIsActive = true;
@@ -238,4 +244,95 @@ public class Functions {
     	}while(loopIsActive);
     	return input;
     }
+    
+	//	A STAR SEARCH ALGORITHM    
+	public void aStar(Node startNode, Node destinationNode) {
+			
+			HashMap<String, Node> open = new HashMap<String, Node>();
+			HashMap<String, Node> closed = new HashMap<String, Node>();
+			
+			Node current = startNode;
+			
+			open.put(current.getName(), current);
+			
+			current.calculateH(destinationNode);
+			current.calculateG(startNode); //Should be 0
+			current.calculateF();
+			//System.out.println(current.calculateF(startNode, destinationNode));
+			
+			while(!open.isEmpty()) {
+	
+				current = lowestScore(open);
+				
+				System.out.println(current.getName());
+				
+				if(current == destinationNode) {
+					System.out.println("destination AKA END");
+					
+					do {
+						System.out.println(current.getName());
+						current = current.getPreviousNode();
+					}while(current != null);
+					
+						
+					break;
+				}
+				
+				System.out.println(current.getName() + " is now in closed");
+				open.remove(current.getName());
+				closed.put(current.getName(), current);
+				
+				ArrayList<Node> neighbours = current.getNeighbours();
+				
+				for(Node neighbour: neighbours) {
+					
+					if(closed.containsKey(neighbour.getName())) { //TODO if neighbour in closed list SKIP
+						System.out.println("    Skip " + neighbour.getName());
+						continue;
+					}
+					
+					double tentativeGCost = neighbour.calculateG(current) + current.getGCost();
+					
+					if(!open.containsKey(neighbour.getName())) {
+						open.put(neighbour.getName(), neighbour);
+					}else if(tentativeGCost >= neighbour.getGCost()) {
+						System.out.println("    tentative skip " + neighbour.getName());
+						continue;
+					}
+					
+					
+					neighbour.setPreviousNode(current);
+					
+					neighbour.setGCost(tentativeGCost);
+					double hCost = neighbour.calculateH(destinationNode);
+					neighbour.setHCost(hCost);
+					neighbour.calculateF();
+					
+					System.out.println("    " + neighbour.getName() + " fcost " + neighbour.getFCost() + " prev " + neighbour.getPreviousNode().getName() );
+					
+				}
+				
+				
+				
+				
+			}
+			
+		}
+	
+		//	CALCULATES THE NEXT NODE TO BE USED
+		public Node lowestScore(HashMap<String, Node> open) {
+			double lowestScore = Double.POSITIVE_INFINITY;
+			Node lowestNode = new Node(null, 0, 0) ;
+			for (Node node : open.values()) {
+				System.out.println(node.getName() + " " + node.calculateF());
+			   if(node.getFCost() < lowestScore) {
+				   System.out.println(node.getName()+ " is lower than " + lowestNode.getName() );
+				   lowestNode = node;
+				   lowestScore = lowestNode.getFCost();
+			   }
+			}
+			
+			System.out.println("lowest Node "  + lowestNode.getName() );
+			return lowestNode;
+		}
 }
