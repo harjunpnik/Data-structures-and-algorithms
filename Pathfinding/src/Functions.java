@@ -6,8 +6,8 @@ public class Functions {
 
 	Scanner scanner = new Scanner(System.in);
 	
-	//	TODO CHANGE TO HASHMAP 
-    public ArrayList<Node> createLargeGraph()
+	//	CREATES THE INITIAL LINKED LIST, LARGER VERSION
+    public HashMap<String, Node> createLargeGraph()
     {
         //	Creates a node for each train station
         Node hki = new Node("Helsinki", 60.1640504, 24.7600896);    
@@ -18,7 +18,7 @@ public class Functions {
         Node oul = new Node("Oulu", 65.0121, 25.4651);
         Node vsa = new Node("Vaasa", 63.0951, 21.6165);
         Node krj = new Node("Karjaa", 60.0714, 23.6619);
-        Node sjk = new Node("Seinajoki", 62.7877, 22.8504);
+        Node sjk = new Node("Seinäjoki", 62.7877, 22.8504);
         Node kaj = new Node("Kajaani", 64.2222, 27.7278);
         Node joe = new Node("Joensuu", 62.6010, 29.7636);
         Node prk = new Node("Parikkala", 61.5502, 29.5024);
@@ -119,23 +119,23 @@ public class Functions {
         kvl.addNeighbour(hki); //Helsinki
         
         //	Creates a list for the graph and adds all the nodes
-        ArrayList<Node> graph = new ArrayList<Node>();
-        graph.add(hki);
-        graph.add(tpe);
-        graph.add(tku);
-        graph.add(kpo);
-        graph.add(jyv);
-        graph.add(oul);
-        graph.add(vsa);
-        graph.add(krj);
-        graph.add(sjk);
-        graph.add(kaj);
-        graph.add(joe);
-        graph.add(prk);
-        graph.add(yli);
-        graph.add(por);
-        graph.add(nrm);
-        graph.add(kvl);
+        HashMap<String, Node> graph = new HashMap<String, Node>();
+        graph.put(hki.getName(), hki);
+        graph.put(tpe.getName(), tpe);
+        graph.put(tku.getName(), tku);
+        graph.put(jyv.getName(), jyv);
+        graph.put(kpo.getName(), kpo);
+        graph.put(oul.getName(), oul);
+        graph.put(vsa.getName(), vsa);
+        graph.put(krj.getName(), krj);
+        graph.put(sjk.getName(), sjk);
+        graph.put(kaj.getName(), kaj);
+        graph.put(joe.getName(), joe);
+        graph.put(prk.getName(), prk);
+        graph.put(yli.getName(), yli);
+        graph.put(por.getName(), por);
+        graph.put(nrm.getName(), nrm);
+        graph.put(kvl.getName(), kvl);
         
         return graph;
     }
@@ -234,6 +234,7 @@ public class Functions {
     	boolean loopIsActive = true;
     	String input;
     	
+    	//	Loops until user enters a String that matches a city
     	do {
     		input = scanner.nextLine();
 	    	if(graph.containsKey(input)) {
@@ -245,32 +246,36 @@ public class Functions {
     	return input;
     }
     
-	//	A STAR SEARCH ALGORITHM    
-	public void aStar(Node startNode, Node destinationNode) {
+	//	A STAR SEARCH ALGORITHM, RETURNS ARRAYLIST<NODE> WITH SHORTEST PATH    
+	public ArrayList<Node> aStar(Node startNode, Node destinationNode) {
 			
+			//Creates a arraylist for the shortest path
+			ArrayList<Node> shortestPath = new ArrayList<Node>();
+		
+			// Creates an open and closed list
 			HashMap<String, Node> open = new HashMap<String, Node>();
 			HashMap<String, Node> closed = new HashMap<String, Node>();
 			
+			// Sets current node to starting node and puts it in the open list
 			Node current = startNode;
-			
 			open.put(current.getName(), current);
 			
+			//	Calculates the initial values for the staring node
 			current.calculateH(destinationNode);
 			current.calculateG(startNode); //Should be 0
 			current.calculateF();
-			//System.out.println(current.calculateF(startNode, destinationNode));
 			
+			//	While open nodes list is not empty we search for a path
 			while(!open.isEmpty()) {
-	
+				
+				//	Sets the current node to the one with the lowest score
 				current = lowestScore(open);
 				
-				System.out.println(current.getName());
-				
+				//	If the current node is the Destination we exit the loop
 				if(current == destinationNode) {
-					System.out.println("destination AKA END");
 					
 					do {
-						System.out.println(current.getName());
+						shortestPath.add(0,current);
 						current = current.getPreviousNode();
 					}while(current != null);
 					
@@ -278,61 +283,59 @@ public class Functions {
 					break;
 				}
 				
-				System.out.println(current.getName() + " is now in closed");
+				//	Removes the current node from the open list and sets it to the closed node list so that it won't be evaluated again 
 				open.remove(current.getName());
 				closed.put(current.getName(), current);
 				
+				//	Creates an array for the neighbours of the current node
 				ArrayList<Node> neighbours = current.getNeighbours();
 				
+				//	For each neighbour we calculate its F Cost
 				for(Node neighbour: neighbours) {
 					
-					if(closed.containsKey(neighbour.getName())) { //TODO if neighbour in closed list SKIP
-						System.out.println("    Skip " + neighbour.getName());
+					// Ignores a node that already has been evaluated
+					if(closed.containsKey(neighbour.getName())) { 
 						continue;
 					}
 					
+					//	Calculates the distance from the start to the node
 					double tentativeGCost = neighbour.calculateG(current) + current.getGCost();
 					
+					//	If node is not in the open list, add it, else if tentative G cost is higher than previous G cost, it does not save the new data
 					if(!open.containsKey(neighbour.getName())) {
 						open.put(neighbour.getName(), neighbour);
 					}else if(tentativeGCost >= neighbour.getGCost()) {
-						System.out.println("    tentative skip " + neighbour.getName());
 						continue;
 					}
 					
-					
+					//	Sets the previous node
 					neighbour.setPreviousNode(current);
 					
+					//	Sets the values of the node 
 					neighbour.setGCost(tentativeGCost);
 					double hCost = neighbour.calculateH(destinationNode);
 					neighbour.setHCost(hCost);
 					neighbour.calculateF();
-					
-					System.out.println("    " + neighbour.getName() + " fcost " + neighbour.getFCost() + " prev " + neighbour.getPreviousNode().getName() );
-					
 				}
-				
-				
-				
-				
 			}
+			return shortestPath;
 			
 		}
 	
-		//	CALCULATES THE NEXT NODE TO BE USED
+		//	CALCULATES THE NEXT NODE TO BE USED AND RETURNS IT
 		public Node lowestScore(HashMap<String, Node> open) {
+			// Creates comparison values
 			double lowestScore = Double.POSITIVE_INFINITY;
-			Node lowestNode = new Node(null, 0, 0) ;
+			Node lowestNode = new Node(null, 0, 0);
+			
+			//	For each node in the open set it searches for the one with the lowest F Cost
 			for (Node node : open.values()) {
-				System.out.println(node.getName() + " " + node.calculateF());
-			   if(node.getFCost() < lowestScore) {
-				   System.out.println(node.getName()+ " is lower than " + lowestNode.getName() );
+				//	Compares the F Cost
+				if(node.getFCost() < lowestScore) {
 				   lowestNode = node;
 				   lowestScore = lowestNode.getFCost();
-			   }
+				}
 			}
-			
-			System.out.println("lowest Node "  + lowestNode.getName() );
 			return lowestNode;
 		}
 }
