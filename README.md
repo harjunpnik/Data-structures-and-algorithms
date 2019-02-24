@@ -8,7 +8,9 @@ All the assignments have a ".bat" file for running the program in a command cons
 
 [Learning points of course](#learning-points-of-course) - TODO
 
-[Assignment 1](#assignment-1) - Basic Bank account application
+[Pathfinding](#pathfinding) - A*-algorithm adaptation for train routes in Finland.
+
+[Assignment 1](#assignment-1) - Basic Bank account application.
 
 [Assignment 2](#assignment-2) - Expansion of previous with new SavingsAccount, CheckingAccount and interest calculation.
 
@@ -22,6 +24,14 @@ All the assignments have a ".bat" file for running the program in a command cons
 ## Learning points of course
 
 TODO
+
+## Pathfinding
+
+The pathfinding application is a adaptation of the A* search algorithm. This application will find the shortest route from a start node to the destination node. In this application the user enters the staring and destination city and the program will show the shortest path, city by city. 
+
+Here below is a picture of the trainroutes.
+
+![train map picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/Pathfinding/src/map.JPG)
 
 ## Assignment 1
 Assignment 1 is a bank account application where you are able to:
