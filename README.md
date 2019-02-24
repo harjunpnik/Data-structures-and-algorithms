@@ -31,7 +31,7 @@ The pathfinding application is a adaptation of the A* search algorithm. This app
 
 Here below is a picture of the trainroutes.
 
-![train map picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/Pathfinding/src/map.JPG)
+![train map picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/Pathfinding/map.JPG)
 
 ## Assignment 1
 Assignment 1 is a bank account application where you are able to:
