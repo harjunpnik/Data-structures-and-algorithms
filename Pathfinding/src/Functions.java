@@ -10,22 +10,22 @@ public class Functions {
     public HashMap<String, Node> createLargeGraph()
     {
         //	Creates a node for each train station
-        Node hki = new Node("Helsinki", 60.1640504, 24.7600896);    
-        Node tpe = new Node("Tampere", 61.6277369, 23.5501169);     
-        Node tku = new Node("Turku", 60.4327477, 22.0853171);
-        Node kpo = new Node("Kuopio", 62.9950487, 26.556762);
-        Node jyv = new Node("Jyväskylä", 62.1373432, 25.0954598);      
-        Node oul = new Node("Oulu", 65.0121, 25.4651);
-        Node vsa = new Node("Vaasa", 63.0951, 21.6165);
-        Node krj = new Node("Karjaa", 60.0714, 23.6619);
-        Node sjk = new Node("Seinäjoki", 62.7877, 22.8504);
-        Node kaj = new Node("Kajaani", 64.2222, 27.7278);
-        Node joe = new Node("Joensuu", 62.6010, 29.7636);
-        Node prk = new Node("Parikkala", 61.5502, 29.5024);
-        Node yli = new Node("Ylivieska", 61.5502, 29.5024);
-        Node por = new Node("Pori", 61.4851, 21.7974);
-        Node nrm = new Node("Nurmes", 63.5419, 29.1396);
-        Node kvl = new Node("Kouvola", 60.8679, 26.7042);
+        Node hki = new Node("Helsinki", 60.16985, 24.93837);    
+        Node tpe = new Node("Tampere", 61.49775, 23.76095);     
+        Node tku = new Node("Turku", 60.45181, 22.26663);
+        Node kpo = new Node("Kuopio", 62.89796, 27.67817);
+        Node jyv = new Node("Jyväskylä", 62.2426, 25.74725);      
+        Node oul = new Node("Oulu", 65.01208, 25.46507);
+        Node vsa = new Node("Vaasa", 63.09508, 21.61645);
+        Node krj = new Node("Karjaa", 60.07139, 23.66191);
+        Node sjk = new Node("Seinäjoki", 62.78773, 22.85043);
+        Node kaj = new Node("Kajaani", 64.22217, 27.72784);
+        Node joe = new Node("Joensuu", 62.60101, 29.76357);
+        Node prk = new Node("Parikkala", 61.55018, 29.5024);
+        Node yli = new Node("Ylivieska", 64.07234, 24.53358);
+        Node por = new Node("Pori", 61.48513, 21.79741);
+        Node nrm = new Node("Nurmes", 63.54188, 29.13956);
+        Node kvl = new Node("Kouvola", 60.86788, 26.70416);
         
 
              
