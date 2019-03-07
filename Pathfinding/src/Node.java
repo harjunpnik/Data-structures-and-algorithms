@@ -117,6 +117,4 @@ public class Node {
 			
 		return g;
 	}
-	
-	
 }

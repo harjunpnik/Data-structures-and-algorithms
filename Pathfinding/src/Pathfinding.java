@@ -30,7 +30,5 @@ public class Pathfinding {
 			 System.out.println(i + ": " + node.getName());
 			 i++;
 		 }
-		
 	}
-
 }

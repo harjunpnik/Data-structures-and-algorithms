@@ -27,14 +27,12 @@ public class Functions {
         Node nrm = new Node("Nurmes", 63.54188, 29.13956);
         Node kvl = new Node("Kouvola", 60.86788, 26.70416);
         
-
              
         //	HELSINKI
         hki.addNeighbour(kvl); //Kouvola
         hki.addNeighbour(jyv); //Jyväskylä
         hki.addNeighbour(tpe); //Tampere
         hki.addNeighbour(krj); //Karjaa
-        
        
         //	TAMPERE
         tpe.addNeighbour(hki); //Helsinki
@@ -327,7 +325,6 @@ public class Functions {
 			// Creates comparison values
 			double lowestScore = Double.POSITIVE_INFINITY;
 			Node lowestNode = new Node(null, 0, 0);
-			
 			//	For each node in the open set it searches for the one with the lowest F Cost
 			for (Node node : open.values()) {
 				//	Compares the F Cost
