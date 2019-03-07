@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+
 public class FileInput {
 
 	public static String readFile(String path) {
@@ -27,6 +28,14 @@ public class FileInput {
 	       }
 		
 		return text;
+	}
+	
+	public static String regexTest(String text) {
+		String regex = "[^A-Za-zåÅäÄöÖæÆøØÀàâÂçÇéÉèÈêÊëËìÌíÍîÎïÏòÒóÓôÔõÕšŠßœŒùÙúÚûÛüÜÿŸ ]";
+		String tempText;
+		tempText = text.replaceAll(regex, "");
+		//TODO remove if two spaces after eachother
+		return tempText;
 	}
 	
 }
