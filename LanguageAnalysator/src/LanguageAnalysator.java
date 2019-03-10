@@ -1,16 +1,17 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class LanguageAnalysator {
 
 	public static void main (String[]args){
-		String msg = FileInput.readFile("Italiano.txt");
-		//System.out.println(msg);
-		// Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
-		String parsedMsg = FileInput.regexTest(msg);
-		System.out.println(parsedMsg);
-		String[] split = parsedMsg.split(" ");
-		System.out.println(Arrays.asList(split));
-		System.out.println(split[0]);
+		String msg = FileInput.readFile("Deutch.txt");
+		ArrayList<String> words = FileInput.regexTest(msg);
+		System.out.println(words);
+		System.out.println(words.get(1));
+		
+		for(String str : words) {
+			System.out.println(str);;
+		}
+		
 	}
 	
 }

@@ -1,6 +1,9 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 
 public class FileInput {
@@ -30,12 +33,14 @@ public class FileInput {
 		return text;
 	}
 	
-	public static String regexTest(String text) {
+	public static ArrayList<String> regexTest(String text) {
+		// Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
 		String regex = "[^A-Za-zåÅäÄöÖæÆøØÀàâÂçÇéÉèÈêÊëËìÌíÍîÎïÏòÒóÓôÔõÕšŠßœŒùÙúÚûÛüÜÿŸ ]";
 		String tempText;
 		tempText = text.replaceAll(regex, "");
-		//TODO remove if two spaces after eachother
-		return tempText;
+		System.out.println(tempText);
+		ArrayList<String> words = new ArrayList<>(Arrays.asList(tempText.split("\\s+")));
+		return words;
 	}
 	
 }
