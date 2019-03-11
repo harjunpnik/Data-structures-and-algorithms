@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class FileInput {
 
-	public static String readFile(String path) {
+	public static ArrayList<String> readFile(String path) {
 		
 		String text = new String();
 		
@@ -30,10 +30,12 @@ public class FileInput {
 	           System.out.println("IOException occured: " + ex.getMessage());
 	       }
 		
-		return text;
+		ArrayList<String> textArray = parseData(text);
+		
+		return textArray;
 	}
 	
-	public static ArrayList<String> regexTest(String text) {
+	public static ArrayList<String> parseData(String text) {
 		// Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
 		String regex = "[^A-Za-zåÅäÄöÖæÆøØÀàâÂçÇéÉèÈêÊëËìÌíÍîÎïÏòÒóÓôÔõÕšŠßœŒùÙúÚûÛüÜÿŸ ]";
 		String tempText;
