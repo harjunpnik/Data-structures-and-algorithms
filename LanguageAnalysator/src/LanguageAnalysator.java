@@ -15,8 +15,11 @@ public class LanguageAnalysator {
 		//System.out.println(testLang.getContent());
 		//System.out.println(testLang.getString());
 		//System.out.println(testLang.getStringFirstChar());
-		testLang.getStringFirstChar();
+		//testLang.getStringFirstChar();
 		
+		
+		System.out.println("END ME");
+		System.out.println(testLang.getFirstCharDistribution());
 	}
 	
 }

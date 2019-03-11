@@ -13,6 +13,7 @@ public class Language {
 	public Language(String languageLabel, ArrayList<String> content) {
 		setLanguageLabel(languageLabel);
 		setContent(content);
+		calcFirstCharDistribution();
 	}
 	
 	private void setLanguageLabel(String languageLabel) {
@@ -37,10 +38,46 @@ public class Language {
 		return listString;
 	}
 	
+	public HashMap <String, Double> getFirstCharDistribution(){
+		return firstCharDistribution;
+	}
+	
+	private void calcFirstCharDistribution() {
+		//Temporary text String
+		String tempText = ""; 
+		//Takes first letter from each word in array
+		for(String letter : content) {
+			tempText += letter.toLowerCase().charAt(0);
+		}
+		
+		//Char array that is sorted
+		char[] chars = tempText.toCharArray();
+		Arrays.sort(chars);
+		//amount of letters
+		double charDistributionLength = chars.length;
+		
+		//Loop that saves amount of each unique character
+		for(char character : chars) {
+			String tempChar = String.valueOf(character);
+			
+			if(firstCharDistribution.containsKey(tempChar)) {
+				firstCharDistribution.put(tempChar,firstCharDistribution.get(tempChar) + 1);
+			}else {
+				firstCharDistribution.put(tempChar, 1.);
+			}
+		}
+		
+		//Loop through list and assign percentage value
+		for(String key : firstCharDistribution.keySet()) {
+			firstCharDistribution.put(key, firstCharDistribution.get(key) / charDistributionLength );
+		}
+	} 
+	
+	//FOR TESTING ONLY
 	public String getStringFirstChar() {
 		String tempText = ""; 
-		for(String str : content) {
-			tempText += str.toLowerCase().charAt(0);
+		for(String letter : content) {
+			tempText += letter.toLowerCase().charAt(0);
 		}
 		System.out.println(tempText);
 		char[] chars = tempText.toCharArray();
