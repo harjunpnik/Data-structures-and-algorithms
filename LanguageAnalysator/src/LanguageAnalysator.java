@@ -18,8 +18,10 @@ public class LanguageAnalysator {
 		//testLang.getStringFirstChar();
 		
 		
-		System.out.println("END ME");
-		System.out.println(testLang.getFirstCharDistribution());
+		System.out.println("END");
+		System.out.println(testLang.getLanguageLabel() + " " + testLang.getFirstCharDistribution());
+		System.out.println(testLang.getLanguageLabel() + " " + testLang.getSingelCharDistribution());
+		
 	}
 	
 }

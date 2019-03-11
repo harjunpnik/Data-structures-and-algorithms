@@ -6,14 +6,15 @@ public class Language {
 
 	private ArrayList<String> content;
 	private String languageLabel;
-	private HashMap <String, Double> singelCharDistribution;
+	private HashMap <String, Double> singelCharDistribution = new HashMap<String, Double>();
 	private HashMap <String, Double> firstCharDistribution = new HashMap<String, Double>();
-	private HashMap <String, Double> threeCharDistribution;
+	private HashMap <String, Double> threeCharDistribution = new HashMap<String, Double>();
 	
 	public Language(String languageLabel, ArrayList<String> content) {
 		setLanguageLabel(languageLabel);
 		setContent(content);
 		calcFirstCharDistribution();
+		calcSingelCharDistribution();
 	}
 	
 	private void setLanguageLabel(String languageLabel) {
@@ -40,6 +41,10 @@ public class Language {
 	
 	public HashMap <String, Double> getFirstCharDistribution(){
 		return firstCharDistribution;
+	}
+	
+	public HashMap <String, Double> getSingelCharDistribution(){
+		return singelCharDistribution;
 	}
 	
 	private void calcFirstCharDistribution() {
@@ -72,6 +77,34 @@ public class Language {
 			firstCharDistribution.put(key, firstCharDistribution.get(key) / charDistributionLength );
 		}
 	} 
+	
+	private void calcSingelCharDistribution() {
+		String result = String.join("", content).toLowerCase();
+        System.out.println(result);
+        char[] chars = result.toCharArray();
+        Arrays.sort(chars);
+        System.out.println(chars);
+        
+        //amount of letters
+      	double charDistributionLength = chars.length;
+      	
+      	//Loop that saves amount of each unique character
+      	for(char character : chars) {
+      		String tempChar = String.valueOf(character);
+      		
+      		if(singelCharDistribution.containsKey(tempChar)) {
+      			singelCharDistribution.put(tempChar,singelCharDistribution.get(tempChar) + 1);
+      		}else {
+      			singelCharDistribution.put(tempChar, 1.);
+      		}
+      	}
+      		
+      	//Loop through list and assign percentage value
+      	for(String key : singelCharDistribution.keySet()) {
+      		singelCharDistribution.put(key, singelCharDistribution.get(key) / charDistributionLength );
+      	}
+	}
+	
 	
 	//FOR TESTING ONLY
 	public String getStringFirstChar() {
