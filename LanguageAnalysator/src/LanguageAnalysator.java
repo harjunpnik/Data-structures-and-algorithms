@@ -4,8 +4,8 @@ public class LanguageAnalysator {
 
 	public static void main (String[]args){
 		ArrayList<String> words = FileInput.readFile("English.txt");
-		System.out.println(words);
-		System.out.println(words.get(1));
+		//System.out.println(words);
+		//System.out.println(words.get(1));
 		
 //		for(String str : words) {
 //			System.out.println(str);;
@@ -21,7 +21,7 @@ public class LanguageAnalysator {
 		System.out.println("END");
 		System.out.println(testLang.getLanguageLabel() + " " + testLang.getFirstCharDistribution());
 		System.out.println(testLang.getLanguageLabel() + " " + testLang.getSingelCharDistribution());
-		
+		System.out.println(testLang.getLanguageLabel() + " " + testLang.getThreeCharDistribution());
 	}
 	
 }

@@ -15,6 +15,7 @@ public class Language {
 		setContent(content);
 		calcFirstCharDistribution();
 		calcSingelCharDistribution();
+		calcThreeCharDistribution();
 	}
 	
 	private void setLanguageLabel(String languageLabel) {
@@ -45,6 +46,10 @@ public class Language {
 	
 	public HashMap <String, Double> getSingelCharDistribution(){
 		return singelCharDistribution;
+	}
+	
+	public HashMap <String, Double> getThreeCharDistribution(){
+		return threeCharDistribution;
 	}
 	
 	private void calcFirstCharDistribution() {
@@ -80,10 +85,10 @@ public class Language {
 	
 	private void calcSingelCharDistribution() {
 		String result = String.join("", content).toLowerCase();
-        System.out.println(result);
+        //System.out.println(result);
         char[] chars = result.toCharArray();
         Arrays.sort(chars);
-        System.out.println(chars);
+        //System.out.println(chars);
         
         //amount of letters
       	double charDistributionLength = chars.length;
@@ -106,52 +111,28 @@ public class Language {
 	}
 	
 	
-	//FOR TESTING ONLY
-	public String getStringFirstChar() {
-		String tempText = ""; 
-		for(String letter : content) {
-			tempText += letter.toLowerCase().charAt(0);
-		}
-		System.out.println(tempText);
-		char[] chars = tempText.toCharArray();
-		Arrays.sort(chars);
-		String sortedText = new String(chars);
-		
-		System.out.println(sortedText.length());
-		System.out.println(sortedText);
-		
-		double charDistributionLength = sortedText.length();
-		
-		for(char character : chars) {
-			//System.out.print(character);
-			String tempChar = String.valueOf(character);
-			
-			//if hashmap contains key then 
-			// hashmap.put word , word.get +1
-			//else
-			// hahsmap .put word , 1
-			if(firstCharDistribution.containsKey(tempChar)) {
-				//System.out.println("true");
-				firstCharDistribution.put(tempChar,firstCharDistribution.get(tempChar) + 1);
-			}else {
-				firstCharDistribution.put(tempChar, 1.);
-			}
-		}
-		
-		//Loop through list and assign percentage value
-		for(String key : firstCharDistribution.keySet()) {
-			System.out.print(key);
-			System.out.print(firstCharDistribution.get(key));
-			firstCharDistribution.put(key, firstCharDistribution.get(key) / charDistributionLength );
-		}
-		
-		System.out.println();
-		System.out.println(firstCharDistribution);
-
-		
-		
-		
-		return sortedText;
+	private void calcThreeCharDistribution() {
+		String result = String.join("", content).toLowerCase();
+        //System.out.println(result);
+        char[] chars = result.toCharArray();
+        
+        //amount of letters
+      	double charDistributionLength = chars.length;
+      	
+      	for(int i=0; i< chars.length - 2; i++) {
+      		String tempChar = String.valueOf(chars[i] +""+ chars[i+1] +""+ chars[i+2]);
+      		
+      		if(threeCharDistribution.containsKey(tempChar)) {
+      			threeCharDistribution.put(tempChar,threeCharDistribution.get(tempChar) + 1);
+      		}else {
+      			threeCharDistribution.put(tempChar, 1.);
+      		}
+      	}
+      	
+      	//Loop through list and assign percentage value
+      	for(String key : threeCharDistribution.keySet()) {
+      		threeCharDistribution.put(key, threeCharDistribution.get(key) / charDistributionLength );
+      	}
+      	
 	}
-	
 }

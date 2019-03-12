@@ -14,7 +14,6 @@ public class FileInput {
 		
 		try {
 			FileInputStream fileIn = new FileInputStream(path);
-			
 			int tempChar;
 			
 			while( (tempChar = fileIn.read()) != -1) {
@@ -29,7 +28,6 @@ public class FileInput {
 	       {
 	           System.out.println("IOException occured: " + ex.getMessage());
 	       }
-		
 		ArrayList<String> textArray = parseData(text);
 		
 		return textArray;
