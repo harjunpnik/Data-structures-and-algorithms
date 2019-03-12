@@ -1,27 +1,19 @@
-import java.util.ArrayList;
 
 public class LanguageAnalysator {
 
 	public static void main (String[]args){
-		ArrayList<String> words = FileInput.readFile("English.txt");
-		//System.out.println(words);
-		//System.out.println(words.get(1));
+		Language german = new Language("German", FileInput.readFile("Deutch.txt"));
+		Language estonian = new Language("Estonian", FileInput.readFile("Eesti.txt"));
+		Language english = new Language("English", FileInput.readFile("English.txt"));
+		Language french = new Language("French", FileInput.readFile("francais.txt"));
+		Language italian = new Language("Italian", FileInput.readFile("Italiano.txt"));
+		Language norwegian = new Language("Norwegian", FileInput.readFile("Norsk.txt"));
+		Language finnish = new Language("Finnish", FileInput.readFile("Suomi.txt"));
+		Language swedish = new Language("Swedish", FileInput.readFile("Svenska.txt"));
 		
-//		for(String str : words) {
-//			System.out.println(str);;
-//		}
-		
-		Language testLang = new Language("Test Lan", words);
-		//System.out.println(testLang.getContent());
-		//System.out.println(testLang.getString());
-		//System.out.println(testLang.getStringFirstChar());
-		//testLang.getStringFirstChar();
-		
-		
-		System.out.println("END");
-		System.out.println(testLang.getLanguageLabel() + " " + testLang.getFirstCharDistribution());
-		System.out.println(testLang.getLanguageLabel() + " " + testLang.getSingelCharDistribution());
-		System.out.println(testLang.getLanguageLabel() + " " + testLang.getThreeCharDistribution());
+		System.out.println(german.getLanguageLabel() + " First char " + german.getFirstCharDistribution());
+		System.out.println(german.getLanguageLabel() + " Singel char " + german.getSingelCharDistribution());
+		System.out.println(german.getLanguageLabel() + " Three char " + german.getThreeCharDistribution());	
 	}
 	
 }

@@ -4,59 +4,62 @@ import java.util.HashMap;
 
 public class Language {
 
-	private ArrayList<String> content;
+	//	VARIABELS
+	private String content;
+	private ArrayList<String> parsedContent;
 	private String languageLabel;
 	private HashMap <String, Double> singelCharDistribution = new HashMap<String, Double>();
 	private HashMap <String, Double> firstCharDistribution = new HashMap<String, Double>();
 	private HashMap <String, Double> threeCharDistribution = new HashMap<String, Double>();
 	
-	public Language(String languageLabel, ArrayList<String> content) {
+	//	CONSTRUCTOR
+	public Language(String languageLabel, String content) {
 		setLanguageLabel(languageLabel);
 		setContent(content);
+		parseData(content);
 		calcFirstCharDistribution();
 		calcSingelCharDistribution();
 		calcThreeCharDistribution();
 	}
 	
-	private void setLanguageLabel(String languageLabel) {
-		this.languageLabel = languageLabel;
+	//	SET
+	private void setLanguageLabel(String languageLabel) { this.languageLabel = languageLabel; }
+	
+	private void setContent(String content) { this.content = content; }
+	
+	//	GET
+	public String getLanguageLabel() { return languageLabel; }
+	
+	public String getContent(){ return content; }
+	
+	public HashMap <String, Double> getFirstCharDistribution(){ return firstCharDistribution; }
+	
+	public HashMap <String, Double> getSingelCharDistribution(){ return singelCharDistribution; }
+	
+	public HashMap <String, Double> getThreeCharDistribution(){ return threeCharDistribution; }
+	
+	//	PARSE DATA METHOD
+	//	This method takes the text string and saves the parsed data in parsedContent variable
+	private void parseData(String text) {
+		// Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
+		// This regex will only pass letters from the above mentioned languages
+		String regex = "[^A-Za-zÂ≈‰ƒˆ÷Ê∆¯ÿ¿‡‚¬Á«È…Ë»Í ÎÀÏÃÌÕÓŒÔœÚ“Û”Ù‘ı’öäﬂúå˘Ÿ˙⁄˚€¸‹ˇüûé ]";
+		String tempText;
+		tempText = text.replaceAll(regex, "");
+		//System.out.println(tempText);
+		// Lastly it splits the string into an ArrayList on one or more spaces 
+		ArrayList<String> words = new ArrayList<>(Arrays.asList(tempText.split("\\s+")));
+		//System.out.println(words);
+		this.parsedContent = words;
 	}
 	
-	private void setContent(ArrayList<String> content) {
-		this.content = content;
-	}
-	
-	public String getLanguageLabel() {
-		return languageLabel;
-	}
-	
-	public ArrayList <String> getContent(){
-		return content;
-	}
-	
-	public String getString() {
-		String listString = String.join("", content).toLowerCase();
-		
-		return listString;
-	}
-	
-	public HashMap <String, Double> getFirstCharDistribution(){
-		return firstCharDistribution;
-	}
-	
-	public HashMap <String, Double> getSingelCharDistribution(){
-		return singelCharDistribution;
-	}
-	
-	public HashMap <String, Double> getThreeCharDistribution(){
-		return threeCharDistribution;
-	}
-	
+	//	CALC FIRST CHAR DISTRIBUTION METHOD
+	//	This method calculates the character distribution of first letter in each word
 	private void calcFirstCharDistribution() {
 		//Temporary text String
 		String tempText = ""; 
 		//Takes first letter from each word in array
-		for(String letter : content) {
+		for(String letter : parsedContent) {
 			tempText += letter.toLowerCase().charAt(0);
 		}
 		
@@ -65,8 +68,9 @@ public class Language {
 		Arrays.sort(chars);
 		//amount of letters
 		double charDistributionLength = chars.length;
-		
+		//System.out.println(chars);
 		//Loop that saves amount of each unique character
+		//TODO Decide if this is going to be separate method for first char and singel char 
 		for(char character : chars) {
 			String tempChar = String.valueOf(character);
 			
@@ -78,13 +82,11 @@ public class Language {
 		}
 		
 		//Loop through list and assign percentage value
-		for(String key : firstCharDistribution.keySet()) {
-			firstCharDistribution.put(key, firstCharDistribution.get(key) / charDistributionLength );
-		}
+      	calculateFrequency(firstCharDistribution, charDistributionLength);
 	} 
 	
 	private void calcSingelCharDistribution() {
-		String result = String.join("", content).toLowerCase();
+		String result = String.join("", parsedContent).toLowerCase();
         //System.out.println(result);
         char[] chars = result.toCharArray();
         Arrays.sort(chars);
@@ -103,23 +105,20 @@ public class Language {
       			singelCharDistribution.put(tempChar, 1.);
       		}
       	}
-      		
+      	
       	//Loop through list and assign percentage value
-      	for(String key : singelCharDistribution.keySet()) {
-      		singelCharDistribution.put(key, singelCharDistribution.get(key) / charDistributionLength );
-      	}
+      	calculateFrequency(singelCharDistribution, charDistributionLength);
 	}
 	
-	
 	private void calcThreeCharDistribution() {
-		String result = String.join("", content).toLowerCase();
+		String result = String.join("", parsedContent).toLowerCase();
         //System.out.println(result);
         char[] chars = result.toCharArray();
         
         //amount of letters
       	double charDistributionLength = chars.length;
       	
-      	for(int i=0; i< chars.length - 2; i++) {
+      	for(int i=0; i< charDistributionLength - 2; i++) {
       		String tempChar = String.valueOf(chars[i] +""+ chars[i+1] +""+ chars[i+2]);
       		
       		if(threeCharDistribution.containsKey(tempChar)) {
@@ -130,9 +129,17 @@ public class Language {
       	}
       	
       	//Loop through list and assign percentage value
-      	for(String key : threeCharDistribution.keySet()) {
-      		threeCharDistribution.put(key, threeCharDistribution.get(key) / charDistributionLength );
-      	}
+      	calculateFrequency(threeCharDistribution, charDistributionLength);
       	
+	}
+	
+	//	CALCULATE FREQUENCY
+	//	Loop through list and assign percentage value
+	private void  calculateFrequency(HashMap <String, Double> characterDistribution, double length){
+		double charLength = length;
+		HashMap <String, Double> charDistribution = characterDistribution;
+      	for(String key : charDistribution.keySet()) {
+      		charDistribution.put(key, charDistribution.get(key) / charLength );
+      	}
 	}
 }
