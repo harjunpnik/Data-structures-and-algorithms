@@ -1,7 +1,11 @@
+import java.util.Scanner;
 
 public class LanguageAnalysator {
 
 	public static void main (String[]args){
+		
+		Scanner scanner = new Scanner(System.in);
+		
 		Language german = new Language("German", FileInput.readFile("Deutch.txt"));
 		Language estonian = new Language("Estonian", FileInput.readFile("Eesti.txt"));
 		Language english = new Language("English", FileInput.readFile("English.txt"));
@@ -14,6 +18,17 @@ public class LanguageAnalysator {
 		System.out.println(german.getLanguageLabel() + " First char " + german.getFirstCharDistribution());
 		System.out.println(german.getLanguageLabel() + " Singel char " + german.getSingelCharDistribution());
 		System.out.println(german.getLanguageLabel() + " Three char " + german.getThreeCharDistribution());	
+		
+		Ui.startText();
+		String userInput = scanner.nextLine();
+		System.out.println(userInput);
+		Language userText = new Language("UserInput", userInput);
+		
+		System.out.println(userText.getLanguageLabel() + " First char " + userText.getFirstCharDistribution());
+		System.out.println(userText.getLanguageLabel() + " Singel char " + userText.getSingelCharDistribution());
+		System.out.println(userText.getLanguageLabel() + " Three char " + userText.getThreeCharDistribution());	
+		
+		System.out.println(userText.getParsedContent());
 	}
 	
 }

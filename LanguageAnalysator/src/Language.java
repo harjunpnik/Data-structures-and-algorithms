@@ -32,6 +32,8 @@ public class Language {
 	
 	public String getContent(){ return content; }
 	
+	public ArrayList<String> getParsedContent(){ return parsedContent; }
+	
 	public HashMap <String, Double> getFirstCharDistribution(){ return firstCharDistribution; }
 	
 	public HashMap <String, Double> getSingelCharDistribution(){ return singelCharDistribution; }
@@ -116,9 +118,9 @@ public class Language {
         char[] chars = result.toCharArray();
         
         //amount of letters
-      	double charDistributionLength = chars.length;
+      	double charDistributionLength = chars.length -2;
       	
-      	for(int i=0; i< charDistributionLength - 2; i++) {
+      	for(int i=0; i< charDistributionLength ; i++) {
       		String tempChar = String.valueOf(chars[i] +""+ chars[i+1] +""+ chars[i+2]);
       		
       		if(threeCharDistribution.containsKey(tempChar)) {
