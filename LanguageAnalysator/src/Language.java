@@ -36,7 +36,7 @@ public class Language {
 	
 	public HashMap <String, Double> getFirstCharDistribution(){ return firstCharDistribution; }
 	
-	public HashMap <String, Double> getSingelCharDistribution(){ return singleCharDistribution; }
+	public HashMap <String, Double> getSingleCharDistribution(){ return singleCharDistribution; }
 	
 	public HashMap <String, Double> getThreeCharDistribution(){ return threeCharDistribution; }
 	
