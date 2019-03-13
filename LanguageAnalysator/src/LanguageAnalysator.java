@@ -1,35 +1,23 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class LanguageAnalysator {
 
 	public static void main (String[]args){
 		
-		Scanner scanner = new Scanner(System.in);
-		
+		//	Creates the language instances and calculates all the known values
 		HashMap<String, Language> languages = Functions.createLanguages();
+
+		//	User inputs a string
+		String userInput = Ui.startText();
+		//	Creates instance of user input and calculates its values
+		Language userText = new Language("UserInput", "Hej Kalle! Hur gammal är du?");
+
+		//	Creates instance of LanguageStats that calculates the differences
+		LanguageStats stats = new LanguageStats(languages, userText);
 		
-		System.out.println(languages.get("German").getLanguageLabel() + " First char " + languages.get("German").getFirstCharDistribution());
-		System.out.println(languages.get("German").getLanguageLabel() + " Three char " + languages.get("German").getThreeCharDistribution());
-		System.out.println(languages.get("German").getLanguageLabel() + " Singel char " + languages.get("German").getSingleCharDistribution());	
+		//	Pass the Result HashMap to UI to be displayed
+		Ui.resultText(stats.getResult());		
 		
-		Ui.startText();
-		//String userInput = scanner.nextLine();
-		//System.out.println(userInput);
-		Language userText = new Language("UserInput", "mayakeskus, joka kuitenkin hylättiin mayojen huippukauden aikana. Vuonna 1502 Kristoffer Kolumbus saapui ");
-		
-		System.out.println(userText.getLanguageLabel() + " First char " + userText.getFirstCharDistribution());
-		System.out.println(userText.getLanguageLabel() + " Singel char " + userText.getSingleCharDistribution());
-		System.out.println(userText.getLanguageLabel() + " Three char " + userText.getThreeCharDistribution());	
-		
-		System.out.println(userText.getParsedContent());
-		
-		LanguageStats test = new LanguageStats(languages, userText);
-		System.out.println(test.getResult());
-		
-		Ui.resultText(test.getResult());
-		
-		scanner.close();
 	}
 	
 }

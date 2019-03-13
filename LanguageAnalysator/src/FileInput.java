@@ -5,7 +5,7 @@ import java.io.IOException;
 public class FileInput {
 
 	//	READ FILE METHOD
-	//	This method reads in a file and returns  it as a string.
+	//	This method reads in a file and returns it as a string
 	public static String readFile(String path) {
 		String text = new String();
 		
@@ -17,14 +17,12 @@ public class FileInput {
 				text += String.valueOf((char)tempChar);
 			}
 			fileIn.close();
-		}catch (FileNotFoundException ex) 
-	       {
+		}catch (FileNotFoundException ex) {
 	           System.out.println("File was not found: " + ex.getMessage());
-	       }
-	       catch (IOException ex) 
-	       {
+	    }
+	    catch (IOException ex) {
 	           System.out.println("IOException occured: " + ex.getMessage());
-	       }
+	    }
 		
 		return text;
 	}

@@ -2,6 +2,7 @@ import java.util.HashMap;
 
 public class Functions {
 
+	//	Creates the Language instances and returns a HashMap containing all of them
 	public static HashMap<String, Language> createLanguages(){
 		
 		Language german = new Language("German", FileInput.readFile("Deutch.txt"));

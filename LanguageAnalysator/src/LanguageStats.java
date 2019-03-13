@@ -1,34 +1,31 @@
 import java.util.HashMap;
 
 public class LanguageStats {
-
+	
+	//	VARIABELS
 	private HashMap<String, Language> languages;
 	private Language inputLanguage;
 	private HashMap<String, double[]> result;
 	
-	
+	//	CONSTRUCTOR	
 	public LanguageStats(HashMap<String, Language> languages, Language inputLanguage) {
 		setLanguages(languages);
 		setInputLanguage(inputLanguage);
 		guessLanguage();
 	}
 	
-	private void setLanguages(HashMap<String, Language> languages) {
-		this.languages = languages;
-	}
+	//	SET
+	private void setLanguages(HashMap<String, Language> languages) { this.languages = languages; }
 	
-	private void setInputLanguage(Language inputLanguage) {
-		this.inputLanguage = inputLanguage;
-	}
+	private void setInputLanguage(Language inputLanguage) { this.inputLanguage = inputLanguage; }
 	
-	private void setResult(HashMap<String, double[]> result) {
-		this.result = result;
-	}
+	private void setResult(HashMap<String, double[]> result) { this.result = result; }
 	
-	public HashMap<String, double[]> getResult(){
-		return result;
-	}
+	//	GET
+	public HashMap<String, double[]> getResult(){ return result; }
 	
+	//	GUESS LANGUEAGE METHOD
+	//	This method calculates the differences for each language and saves the result
 	public void guessLanguage() {	
 		HashMap<String, double[]> result = new HashMap<String, double[]>();
 		
@@ -41,7 +38,7 @@ public class LanguageStats {
 		    double threeDiff = calcDifference(inputLanguage.getThreeCharDistribution(), value.getThreeCharDistribution());
 		    double total = singleDiff + firstDiff + threeDiff;
 		    total = total /3;
-		    System.out.println(key + " s: "  + singleDiff + " f: " + firstDiff + " t: " + threeDiff + " total: " + total);
+		    //System.out.println(key + " s: "  + singleDiff + " f: " + firstDiff + " t: " + threeDiff + " total: " + total);
 		    
 		    double[] tempo = {total, singleDiff, firstDiff, threeDiff };
 		    

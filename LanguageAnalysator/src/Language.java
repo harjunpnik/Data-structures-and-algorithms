@@ -43,38 +43,35 @@ public class Language {
 	//	PARSE DATA METHOD
 	//	This method takes the text string and saves the parsed data in parsedContent variable
 	private void parseData(String text) {
-		// Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
-		// This regex will only pass letters from the above mentioned languages
+		//	Regex for Deutch,Estonina,English,French,Italian,Norwegian,Finnish,Swedish
+		//	This regex will only pass letters from the above mentioned languages
 		String regex = "[^A-Za-zÂ≈‰ƒˆ÷Ê∆¯ÿ¿‡‚¬Á«È…Ë»Í ÎÀÏÃÌÕÓŒÔœÚ“Û”Ù‘ı’öäﬂúå˘Ÿ˙⁄˚€¸‹ˇüûé ]";
-		String tempText;
+		String tempText = new String();
 		tempText = text.replaceAll(regex, "");
-		//System.out.println(tempText);
-		// Lastly it splits the string into an ArrayList on one or more spaces 
+		
+		//	Lastly it splits the string into an ArrayList on one or more spaces 
 		ArrayList<String> words = new ArrayList<>(Arrays.asList(tempText.split("\\s+")));
-		//System.out.println(words);
 		this.parsedContent = words;
 	}
 	
 	//	CALC FIRST CHAR DISTRIBUTION METHOD
 	//	This method calculates the character distribution of first letter in each word
 	private void calcFirstCharDistribution() {
-		//Temporary text String
-		String tempText = ""; 
-		//Takes first letter from each word in array
+		//	Temporary text String that will be converted to Char array
+		String tempText = new String(); 
+		
+		//	Takes first letter from each word in array
 		for(String letter : parsedContent) {
 			tempText += letter.toLowerCase().charAt(0);
 		}
 		
-		//Char array that is sorted
+		//	Char array
 		char[] chars = tempText.toCharArray();
-		Arrays.sort(chars);
-		//amount of letters
+
+		//	Amount of letters
 		double charDistributionLength = chars.length;
 		
-		//System.out.println( "First " + charDistributionLength);
-		//System.out.println(chars);
-		//Loop that saves amount of each unique character
-		//TODO Decide if this is going to be separate method for first char and single char 
+		//	Loop that saves amount of each unique characters to FirstCharDistribution HashMap
 		for(char character : chars) {
 			String tempChar = String.valueOf(character);
 			
@@ -85,23 +82,21 @@ public class Language {
 			}
 		}
 		
-		//Loop through list and assign percentage value
+		//	Loop through list and assign percentage value
       	calculateFrequency(firstCharDistribution, charDistributionLength);
 	} 
 	
+	//	CALC SINGLE CHAR DISTRIBUTION METHOD
+	//	This method This method calculates the character distribution of each unique letter
 	private void calcSingleCharDistribution() {
-		String result = String.join("", parsedContent).toLowerCase();
-        //System.out.println(result);
-        char[] chars = result.toCharArray();
-        Arrays.sort(chars);
-        //System.out.println(chars);
-        
-        //amount of letters
+		//	Temporary text String that will be converted to Char array
+		String tempText = String.join("", parsedContent).toLowerCase();
+        char[] chars = tempText.toCharArray();
+
+        //	Amount of letters
       	double charDistributionLength = chars.length;
       	
-      	//System.out.println("Single" + charDistributionLength);
-      	
-      	//Loop that saves amount of each unique character
+      	//	Loop that saves amount of each unique characters to SingleCharDistribution HashMap
       	for(char character : chars) {
       		String tempChar = String.valueOf(character);
       		
@@ -112,20 +107,21 @@ public class Language {
       		}
       	}
       	
-      	//Loop through list and assign percentage value
+      	//	Loop through list and assign percentage value
       	calculateFrequency(singleCharDistribution, charDistributionLength);
 	}
 	
+	//	CALC SINGLE THREE DISTRIBUTION METHOD
+	//	This method This method calculates the character distribution of each unique letter
 	private void calcThreeCharDistribution() {
-		String result = String.join("", parsedContent).toLowerCase();
-        //System.out.println(result);
-        char[] chars = result.toCharArray();
+		//	Temporary text String that will be converted to Char array
+		String tempText = String.join("", parsedContent).toLowerCase();
+        char[] chars = tempText.toCharArray();
         
-        //amount of letters
+        //	Amount of letters
       	double charDistributionLength = chars.length -2;
       	
-      	//System.out.println("three" + charDistributionLength);
-      	
+      	//	Loop that saves amount of each unique three character combination to ThreeCharDistribution HashMap
       	for(int i=0; i< charDistributionLength ; i++) {
       		String tempChar = String.valueOf(chars[i] +""+ chars[i+1] +""+ chars[i+2]);
       		
@@ -142,7 +138,7 @@ public class Language {
 	}
 	
 	//	CALCULATE FREQUENCY
-	//	Loop through list and assign percentage value
+	//	Loop through list and assign percentage value (unique character amount divided by total amount)
 	private void  calculateFrequency(HashMap <String, Double> characterDistribution, double length){
 		double charLength = length;
 		HashMap <String, Double> charDistribution = characterDistribution;
