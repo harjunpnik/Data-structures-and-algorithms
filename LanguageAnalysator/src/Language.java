@@ -8,7 +8,7 @@ public class Language {
 	private String content;
 	private ArrayList<String> parsedContent;
 	private String languageLabel;
-	private HashMap <String, Double> singelCharDistribution = new HashMap<String, Double>();
+	private HashMap <String, Double> singleCharDistribution = new HashMap<String, Double>();
 	private HashMap <String, Double> firstCharDistribution = new HashMap<String, Double>();
 	private HashMap <String, Double> threeCharDistribution = new HashMap<String, Double>();
 	
@@ -18,7 +18,7 @@ public class Language {
 		setContent(content);
 		parseData(content);
 		calcFirstCharDistribution();
-		calcSingelCharDistribution();
+		calcSingleCharDistribution();
 		calcThreeCharDistribution();
 	}
 	
@@ -36,7 +36,7 @@ public class Language {
 	
 	public HashMap <String, Double> getFirstCharDistribution(){ return firstCharDistribution; }
 	
-	public HashMap <String, Double> getSingelCharDistribution(){ return singelCharDistribution; }
+	public HashMap <String, Double> getSingelCharDistribution(){ return singleCharDistribution; }
 	
 	public HashMap <String, Double> getThreeCharDistribution(){ return threeCharDistribution; }
 	
@@ -70,9 +70,11 @@ public class Language {
 		Arrays.sort(chars);
 		//amount of letters
 		double charDistributionLength = chars.length;
+		
+		//System.out.println( "First " + charDistributionLength);
 		//System.out.println(chars);
 		//Loop that saves amount of each unique character
-		//TODO Decide if this is going to be separate method for first char and singel char 
+		//TODO Decide if this is going to be separate method for first char and single char 
 		for(char character : chars) {
 			String tempChar = String.valueOf(character);
 			
@@ -87,7 +89,7 @@ public class Language {
       	calculateFrequency(firstCharDistribution, charDistributionLength);
 	} 
 	
-	private void calcSingelCharDistribution() {
+	private void calcSingleCharDistribution() {
 		String result = String.join("", parsedContent).toLowerCase();
         //System.out.println(result);
         char[] chars = result.toCharArray();
@@ -97,19 +99,21 @@ public class Language {
         //amount of letters
       	double charDistributionLength = chars.length;
       	
+      	//System.out.println("Single" + charDistributionLength);
+      	
       	//Loop that saves amount of each unique character
       	for(char character : chars) {
       		String tempChar = String.valueOf(character);
       		
-      		if(singelCharDistribution.containsKey(tempChar)) {
-      			singelCharDistribution.put(tempChar,singelCharDistribution.get(tempChar) + 1);
+      		if(singleCharDistribution.containsKey(tempChar)) {
+      			singleCharDistribution.put(tempChar,singleCharDistribution.get(tempChar) + 1);
       		}else {
-      			singelCharDistribution.put(tempChar, 1.);
+      			singleCharDistribution.put(tempChar, 1.);
       		}
       	}
       	
       	//Loop through list and assign percentage value
-      	calculateFrequency(singelCharDistribution, charDistributionLength);
+      	calculateFrequency(singleCharDistribution, charDistributionLength);
 	}
 	
 	private void calcThreeCharDistribution() {
@@ -119,6 +123,8 @@ public class Language {
         
         //amount of letters
       	double charDistributionLength = chars.length -2;
+      	
+      	//System.out.println("three" + charDistributionLength);
       	
       	for(int i=0; i< charDistributionLength ; i++) {
       		String tempChar = String.valueOf(chars[i] +""+ chars[i+1] +""+ chars[i+2]);

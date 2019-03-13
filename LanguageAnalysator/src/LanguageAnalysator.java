@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class LanguageAnalysator {
@@ -6,18 +7,11 @@ public class LanguageAnalysator {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		Language german = new Language("German", FileInput.readFile("Deutch.txt"));
-		Language estonian = new Language("Estonian", FileInput.readFile("Eesti.txt"));
-		Language english = new Language("English", FileInput.readFile("English.txt"));
-		Language french = new Language("French", FileInput.readFile("francais.txt"));
-		Language italian = new Language("Italian", FileInput.readFile("Italiano.txt"));
-		Language norwegian = new Language("Norwegian", FileInput.readFile("Norsk.txt"));
-		Language finnish = new Language("Finnish", FileInput.readFile("Suomi.txt"));
-		Language swedish = new Language("Swedish", FileInput.readFile("Svenska.txt"));
+		HashMap<String, Language> languages = Functions.createLanguages();
 		
-		System.out.println(german.getLanguageLabel() + " First char " + german.getFirstCharDistribution());
-		System.out.println(german.getLanguageLabel() + " Singel char " + german.getSingelCharDistribution());
-		System.out.println(german.getLanguageLabel() + " Three char " + german.getThreeCharDistribution());	
+		System.out.println(languages.get("German").getLanguageLabel() + " First char " + languages.get("German").getFirstCharDistribution());
+		System.out.println(languages.get("German").getLanguageLabel() + " Singel char " + languages.get("German").getThreeCharDistribution());
+		System.out.println(languages.get("German").getLanguageLabel() + " Three char " + languages.get("German").getSingelCharDistribution());	
 		
 		Ui.startText();
 		String userInput = scanner.nextLine();
@@ -29,6 +23,7 @@ public class LanguageAnalysator {
 		System.out.println(userText.getLanguageLabel() + " Three char " + userText.getThreeCharDistribution());	
 		
 		System.out.println(userText.getParsedContent());
+		
 	}
 	
 }
