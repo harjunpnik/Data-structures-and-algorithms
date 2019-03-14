@@ -35,7 +35,7 @@ This application works best with longer texts, since short sentences can have a 
 
 Here are the class diagrams
 
-![class diagram picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/LanguageAnalysator/ClassDiagram.JPG)
+![class diagram picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/LanguageAnalysator/ClassDiagram.png)
 
 ## Pathfinding
 
