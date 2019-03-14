@@ -33,6 +33,8 @@ The Language Analysator application is based on naive bayes comparison. At the s
 
 This application works best with longer texts, since short sentences can have a very similar structure and character distribution as many other languages. This application will only suggest on of the following languages: German, Estoninan, English, French, Italian, Norwegian, Finnish and Swedish.
 
+To run the application you can either take the files and put them directly in an IDE and run it in the console or you can move the language files into the "src" folder and execute the "run.bat" file. 
+
 Here are the class diagrams
 
 ![class diagram picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/LanguageAnalysator/ClassDiagram.png)
