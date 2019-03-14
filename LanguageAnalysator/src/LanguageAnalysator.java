@@ -10,7 +10,7 @@ public class LanguageAnalysator {
 		//	User inputs a string
 		String userInput = Ui.startText();
 		//	Creates instance of user input and calculates its values
-		Language userText = new Language("UserInput", "Hej Kalle! Hur gammal är du?");
+		Language userText = new Language("UserInput", userInput);
 
 		//	Creates instance of LanguageStats that calculates the differences
 		LanguageStats stats = new LanguageStats(languages, userText);

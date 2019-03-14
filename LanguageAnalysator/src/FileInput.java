@@ -9,6 +9,7 @@ public class FileInput {
 	public static String readFile(String path) {
 		String text = new String();
 		
+		//	This reads the file character by character 
 		try {
 			FileInputStream fileIn = new FileInputStream(path);
 			int tempChar;
