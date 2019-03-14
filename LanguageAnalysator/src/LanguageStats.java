@@ -26,7 +26,7 @@ public class LanguageStats {
 	
 	//	GUESS LANGUEAGE METHOD
 	//	This method calculates the differences for each language and saves the result
-	public void guessLanguage() {	
+	private void guessLanguage() {	
 		//	This saves the result with the key being name of language and a double array containing [total, single, first, three] char differences in that order
 		HashMap<String, double[]> result = new HashMap<String, double[]>();
 		
@@ -55,7 +55,7 @@ public class LanguageStats {
 	
 	//	CALC DIFFERENCE METHOD
 	//	This method is called upon each calculation of difference. Returns the total difference in data tables
-	public double calcDifference(HashMap<String, Double> inputLangValue, HashMap<String, Double> comparisonLangValue) {
+	private double calcDifference(HashMap<String, Double> inputLangValue, HashMap<String, Double> comparisonLangValue) {
 		
 		double totalDifference = 0;
 		

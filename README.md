@@ -6,7 +6,9 @@ All the assignments have a ".bat" file for running the program in a command cons
 
 ## Table of Contents
 
-[Learning points of course](#learning-points-of-course) - TODO
+[Learning points of course](#learning-points-of-course) - Short summary of the course learning points
+
+[Language Analysator](#language-analysator) - Language analysator application.
 
 [Pathfinding](#pathfinding) - A*-algorithm adaptation for train routes in Finland.
 
@@ -23,7 +25,17 @@ All the assignments have a ".bat" file for running the program in a command cons
 
 ## Learning points of course
 
-TODO
+The main learning points of this course were to learn more about object-oriented code and how to code algorithms. We also learned about different data-structures and when they should be used.
+
+## Language Analysator
+
+The Language Analysator application is based on naive bayes comparison. At the start of the program it reads all the language "databases" and splits them into three main categories: Single character, First Character and Three Character combination. It then takes the users input and does the same. After that it compares the values of each unique letter and combination and saves the total values. It then represents a table of which language it thinks the user has written in. 
+
+This application works best with longer texts, since short sentences can have a very similar structure and character distribution as many other languages. This application will only suggest on of the following languages: German, Estoninan, English, French, Italian, Norwegian, Finnish and Swedish.
+
+Here are the class diagrams
+
+![class diagram picture](https://github.com/harjunpnik/Data-structures-and-algorithms/blob/master/LanguageAnalysator/ClassDiagram.JPG)
 
 ## Pathfinding
 
